@@ -1,0 +1,263 @@
+.home {
+  margin: auto;
+  width: 100%;
+}
+.homeBannerSection {
+  width: 98%;
+  margin-bottom: 15px;
+}
+.home .discount {
+  padding: 30px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.home .discount img {
+  width: 25%;
+  height: 100%;
+}
+.home .disc-prod {
+  text-align: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.home .disc-prod img {
+  width: 90%;
+}
+.popularProducts,
+.newProducts,
+.featuredProducts {
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+h2 {
+  padding-left: 15px;
+  font-family: "Dosis", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+}
+.underTitle {
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.4);
+  letter-spacing: 1px;
+  padding-left: 15px;
+}
+.popularProducts .categoriesBar {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 5px 0;
+}
+.productsList {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.boxLink {
+  text-decoration: none !important;
+}
+.productBox {
+  width: 215px;
+  height: 400px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #b5bdbd25;
+  display: flex;
+  flex-direction: column;
+}
+.productBox:hover {
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.3);
+  background-color: #02a6a325;
+}
+.productBox .boxTop {
+  flex: 1;
+  position: relative;
+}
+.productBox .boxTop .heart {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.productBox .boxTop .heart:hover {
+  color: red;
+}
+.productBox .boxTop .fullScreen {
+  position: absolute;
+  bottom: 10px;
+  right: 0px;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: rgba(0, 0, 0, 0.7);
+}
+.productBox .boxTop img {
+  object-fit: cover;
+  width: 100%;
+}
+.productBox .boxTop .fullScreen:hover {
+  font-size: 24px;
+}
+.productBox .boxBottom {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.productBox .boxBottom h3 {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
+  padding: 8px 0;
+}
+.productBox .boxBottom h4 {
+  font-size: 16px;
+  text-transform: capitalize;
+}
+.productBox .boxBottom .rating {
+  text-align: center;
+}
+.productBox .boxBottom .rating svg {
+  color: var(--tertiary-color);
+  font-size: 28px;
+}
+.productBox .boxBottom p {
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+.productBox .boxBottom .addToCart {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 30px;
+  cursor: pointer;
+}
+.productBox .boxBottom .addToCart:hover {
+  color: green;
+}
+.allProducts .allProductsList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+}
+.previous-next {
+  cursor: pointer;
+  outline: none !important;
+  color: var(--secondary-color) !important;
+  border-radius: 10px !important;
+}
+.active {
+  background-color: var(--secondary-color) !important;
+  color: white !important;
+  outline: none !important;
+  border-radius: 10px !important;
+}
+.inactive {
+  background-color: transparent !important;
+  color: var(--secondary-color) !important;
+  outline: none !important;
+  border-radius: 10px !important;
+}
+.allProducts {
+  width: 100%;
+  padding: 15px 0;
+  flex: 9;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: -10px;
+}
+.filter {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  padding: 10px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  left: 0;
+  margin-top: -10px;
+}
+.filterByPrice{
+  padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.filterByPrice h3, .filterByRating h3{
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
+  padding: 8px 0;
+  text-transform: uppercase;
+}
+.filterByPrice p,.selectedRating .selectedRatingText{
+  font-size: 16px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+}
+.filterByPrice .priceRange {
+    width: 220px;
+}
+.range-slider .range-slider__range,.range-slider .range-slider__thumb{
+  background-color: var(--secondary-color)!important;
+}
+.filterByRating{
+  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ratingFilter{
+  display: flex;
+  gap: 10px;
+}
+.filterByRating .ratingFilter .notAll{
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: #ccc;
+}
+.filterByRating .ratingFilter .all{
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--tertiary-color);
+}
+.filterByRating .ratingFilter .selected{
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--tertiary-color);
+}
+.filterByRating .ratingFilter .notSelected{
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  color: #ccc;
+}
+.filterByRating .ratingFilter .star{
+  color: var(--tertiary-color);
+}

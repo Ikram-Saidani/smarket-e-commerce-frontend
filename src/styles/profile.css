@@ -1,0 +1,356 @@
+.profile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 10px 0;
+}
+.profile .profileHeader {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  height: fit-content;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+}
+.profile .profileHeaderUser {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.profile .profileHeader .profileAvatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.profile .profileHeaderUser .editProfile,
+.loyaltyProgram .loyaltyButton {
+  width: 120px;
+  height: 40px;
+  color: #fff;
+  background-color: var(--secondary-color);
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+}
+.profile .profileHeaderUser .editProfile:hover,
+.loyaltyProgram .loyaltyButton:hover {
+  background-color: #02a6a325;
+  color: var(--secondary-color);
+}
+.loyaltyProgram .loyaltyButtonDisabled {
+  width: 120px;
+  height: 40px;
+  background-color: #02a6a325;
+  color: var(--secondary-color);
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+}
+.profile .loyaltyProgram {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.profile .loyaltyProgram h3 {
+  font-size: 28px;
+  letter-spacing: 2px;
+  font-family: "Dosis", sans-serif;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.profile .loyaltyProgram p {
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+.profile .accountInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  height: fit-content;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+}
+.profile .accountInfo h4 {
+  font-size: 16px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+.profile .donationInfo {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 100%;
+  padding: 15px;
+}
+.profile .donationInfo h4 {
+  font-size: 28px;
+  letter-spacing: 2px;
+  font-family: "Dosis", sans-serif;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.profile .donationInfo ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  list-style: none;
+}
+.profile .donationInfo ul {
+  font-size: 16px;
+  letter-spacing: 2px;
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: capitalize;
+}
+.profile .donationInfo .certificationBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  width: 500px;
+  border-radius: 10px;
+  text-transform: capitalize;
+  padding: 20px;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 auto;
+  border: 1px solid rgb(218, 165, 32);
+}
+.profile .donationInfo .certificationBadge h3,
+.profile .donationInfo .certificationBadge h4 {
+  color: rgb(218, 165, 32);
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+.profile .donationInfo .certificationBadge .logo {
+  width: 100px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+.profile .donationInfo .certificationBadge .download {
+  width: 250px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 10px;
+  outline: none;
+}
+.profile .donationInfo .certificationBadge .download:hover {
+  color: var(--secondary-color);
+  background-color: #02a6a333;
+}
+.accountInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px !important;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 15px;
+}
+.accountInfo > div.row,
+.accountInfo > div.row2 {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.accountInfo > div.row input {
+  width: 350px;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Dosis", sans-serif;
+}
+.accountInfo > div.row2 input {
+  width: 550px;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Dosis", sans-serif;
+}
+.accountInfo > div.row2 .selectGenderInput {
+  width: 550px;
+  height: 60px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Dosis", sans-serif;
+}
+.accountInfo > div.row3 {
+  display: flex;
+  width: 90%;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+.addressBox, .addresses{
+  display: flex!important;
+  flex-direction: row;
+}
+.accountInfo > div.row3 .addresses {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.accountInfo > div.row3 .addresses .address{
+    flex: 1;
+}
+.accountInfo > div.row3 .addresses .address input {
+  width: 550px;
+  height: 50px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  outline: none;
+  padding: 10px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Dosis", sans-serif;
+}
+
+.accountInfo > div.row3 .addresses .addressInput {
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: "Dosis", sans-serif;
+}
+.accountInfo > div.row3 .addresses .address{
+    position: relative;
+}
+.accountInfo > div.row3 .addresses .address .remove{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+.accountInfo > div.row3 .addresses .address .removeDisabled{
+    position: absolute;
+    top: 0;
+    right: 10px;
+    font-size: 20px;
+    cursor: not-allowed;
+    color: #ccc;
+}
+.accountInfo .addAddress{
+    width: 150px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: var(--secondary-color);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+    margin: auto;
+}
+.accountInfo .addAddress:hover {    
+    color: var(--secondary-color);
+    background-color: #02a6a333;
+}
+.accountInfo .addAddressDisabled{
+    width: 150px;
+    height: 40px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #02a6a325;
+    color: var(--secondary-color);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: not-allowed;
+    outline: none;
+    margin: auto;
+}
+.accountInfo > div.row3 .addAddressContainer{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+    text-transform: capitalize;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
+    margin-top: 10px;
+}
+.accountInfo > div.row3 .addAddressContainer input {
+    width: 750px;
+    height: 50px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    outline: none;
+    padding: 10px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.8);
+    font-family: "Dosis", sans-serif;
+  }
+.accountInfo .editButton {
+  width: 120px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin: auto;
+}
+
+.accountInfo .editButton:hover {
+  color: var(--secondary-color);
+  background-color: #02a6a333;
+}

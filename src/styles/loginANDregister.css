@@ -1,0 +1,131 @@
+.pageLoginRegister {
+  background-image: url("../assets/images/bg-login-register.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.register-login {
+  width: 80%;
+  height: 95%;
+  padding: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  background-color: #fffcf3;
+  box-shadow: 5px 8px 15px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Dosis', sans-serif;
+}
+.register-login img {
+  width: 200px;
+}
+.register-login form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 20px;
+  margin: 20px 0;
+}
+.register-login form>div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.register-login form>div>div{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.genderAndAddress{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+}
+
+.gender{
+  flex: 1;
+}
+.register-login .genderForm{
+  width: 200px;
+  outline: none;
+}
+.register-login .address{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  width: 50%;
+  flex: 2;
+}
+.register-login .address label{
+  flex: 20%;
+}
+.register-login .address input{
+  flex: 80%;
+  justify-self: flex-start;
+}
+.register-login label {
+  grid-column: 1/2;
+  margin-bottom: 0;
+  min-width: max-content;
+  width: 130px;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.register-login input {
+  grid-column: 2/3;
+  width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  font-size: 16px;
+  font-weight: 400;
+  height: 50px;
+}
+.register-login button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+  margin: auto;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.register-login button:hover {
+  background-color: #02a6a333;
+  color: var(--secondary-color);
+}
+
+.register-login h4 {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+}
+.register-login h4 .link{
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-transform: uppercase;
+}

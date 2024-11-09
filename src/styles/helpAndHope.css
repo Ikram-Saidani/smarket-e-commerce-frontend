@@ -1,0 +1,52 @@
+.helpProducts {
+  width: 100%;
+  padding: 15px 0;
+}
+.helpProductsList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+.helpBox {
+    width: 215px;
+    height: 400px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 15px;
+    background-color: #b5bdbd25;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.helpBox:hover {
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.3);
+  background-color: #02a6a325;
+}
+.helpBox img {
+  width: 180px;
+}
+.helpBox h3 {
+  font-size: 18px;
+}
+.helpBox h4 {
+  font-size: 18px;
+}
+.helpBox p {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 16px;
+}
+.helpBox .donate {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary-color);
+  color: #fff;
+  font-weight: 600;
+}
+.helpBox .donate:hover {
+  color: var(--secondary-color);
+  background-color: #02a6a325;
+}

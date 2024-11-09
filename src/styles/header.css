@@ -1,0 +1,330 @@
+.headerWrapper {
+  background-color: #fffcf3;
+  display: flex;
+  flex-direction: column;
+}
+.headerWrapper .top-strip {
+  padding: 8px 0px;
+  background-color: var(--tertiary-color);
+}
+.headerWrapper .top-strip p {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.headerWrapper .header {
+  width: 95%;
+  height: auto;
+  padding: 8px 0px;
+  margin: auto;
+}
+.logoWrapper img {
+  width: 100px;
+}
+.headerSearch {
+  width: 60%;
+  height: 60px;
+  background-color: #f3f4f793;
+  padding: 10px;
+  position: relative;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.headerSearch input {
+  background: transparent;
+  outline: none;
+  font-size: 15px;
+  color: rgba(0, 0, 0, 0.7);
+  border: 0px;
+  width: 100%;
+  height: 35px;
+  padding: 0px 20px;
+}
+.headerSearch input::-webkit-input-placeholder {
+  color: rgba(0, 0, 0, 0.5);
+}
+.headerSearch .search {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  z-index: 100;
+  outline: none;
+  min-width: 40px;
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  color: rgba(0, 0, 0, 0.5);
+}
+.headerSearch svg {
+  font-size: 25px;
+  opacity: 0.7;
+}
+header .part3{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.gift{
+  gap: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: max-content;
+  cursor: default;
+}
+.score{
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+}
+header .part3 .circleUser {
+  align-items: center;
+  justify-content: center;
+  min-width: 90px;
+  height: 45px;
+  width: 90px;
+  border-radius: 40px;
+  outline: none;
+  color: #fff;
+  text-transform: capitalize;
+  font-size: 15px;
+  background-color: var(--secondary-color);
+}
+header .part3 .circleUser:hover {
+  background-color: #02a6a333;
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+header .part3 .circleUser svg {
+  font-size: 22px;
+}
+header .part3 .circle {
+  align-items: center;
+  justify-content: center;
+  min-width: 45px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  color: rgba(0, 0, 0, 0.6);
+}
+header .part3 .circle svg {
+  font-size: 22px;
+}
+header .part3 .profileAvatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.cartTab {
+  position: relative;
+}
+.cartTab button {
+  background-color: #ff560818;
+  border: 1px solid #ff560818 !important;
+}
+.cartTab button svg {
+  color: var(--primary-color);
+}
+.cartTab .count {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-radius: 50%;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+nav {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 1000 !important;
+  background-color: #fffcf3;
+  padding-top: 8px;
+}
+
+.nav {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.nav .container-fluid {
+  width: 95%;
+  padding-bottom: 8px;
+  margin: auto;
+}
+.nav .allCatTab {
+  background: var(--secondary-color);
+  color: #fff;
+  padding: 10px 15px;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 30px;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 200px;
+}
+.nav .allCatTab:hover {
+  background-color: #02a6a333;
+  color: var(--secondary-color);
+  transition: all 0.3s ease;
+}
+.nav .allCatTab .left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Dosis", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+.nav .allCatTab .left svg {
+  font-size: 20px;
+}
+.nav .allCatTab .right svg {
+  font-size: 16px;
+}
+.nav .navPart1 {
+  max-width: 20%;
+  flex: 0 0 20%;
+}
+.nav .navPart2 {
+  max-width: 80%;
+  flex: 0 0 80%;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Dosis", sans-serif;
+}
+.nav .list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+  margin: 0;
+  text-transform: uppercase;
+}
+.nav .list .list-inline-item {
+  list-style: none;
+  border-radius: 30px;
+}
+.nav .list .list-inline-item a {
+  text-decoration: none;
+  color: inherit;
+}
+.nav .list .list-inline-item a button {
+  border: none;
+  background: none;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0;
+  border-radius: 30px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav .list .list-inline-item a button svg {
+  font-size: 18px;
+}
+.nav .list .list-inline-item:hover {
+  background-color: #ffcc002f;
+}
+.nav .help {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--tertiary-color);
+}
+.nav .help .number {
+  font-weight: 800;
+}
+.allCategoriesBox {
+  width: 100%;
+  margin-bottom: 10px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+}
+.allCategoriesBox .allCategoriesList {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: auto;
+}
+.allCategoriesBox .allCategoriesList .categoryLink {
+  text-decoration: none;
+}
+.allCategoriesBox .allCategoriesList .categoryLink button {
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.allCategoriesBox .allCategoriesList .categoryLink button:hover {
+  background-color: #ffcc002f;
+}
+.allCategoriesBox .allCategoriesList .categoryLink img {
+  width: 50px;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #02a6a325;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.categoriesBar .allCategoriesList {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.categoriesBar .allCategoriesList .categoryLink {
+  text-decoration: none;
+}
+.categoriesBar .allCategoriesList .categoryLink button {
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  color: rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.categoriesBar .allCategoriesList .categoryLink button:hover {
+  background-color: #ffcc002f;
+}
+.categoriesBar .allCategoriesList .categoryLink img {
+  width: 50px;
+}

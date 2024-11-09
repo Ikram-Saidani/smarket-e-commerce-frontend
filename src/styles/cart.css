@@ -1,0 +1,164 @@
+.cartPage {
+  width: 100%;
+  padding: 15px 0;
+}
+.cartList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  gap: 30px;
+  width: 90%;
+  height: fit-content;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #b5bdbd25;
+}
+.cartList h3 {
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+.cartList button{
+  width: 130px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: var(--secondary-color);
+  color: #fff;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  outline: none;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+
+}
+.cartList button span{
+  font-size: 20px;
+}
+.cartList button:hover {
+  background-color: #02a6a325;
+  color: var(--secondary-color);
+}
+.cartBox {
+  display: flex;
+  width: 95%;
+  height: 100px;
+  align-items: center;
+  justify-content:space-around;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.cartBox .boxLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  letter-spacing: 1px;
+}
+.cartBox .boxLeft img {
+  width: 100px;
+}
+.cartBox .boxLeft h3 {
+  font-size: 16px;
+}
+.cartBox .boxLeft p {
+  font-size: 16px;
+  font-weight: 600;
+}
+.cartBox .boxRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+.cartBox .boxRight span {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: none;
+  outline: none;
+  margin: 0;
+  border-radius: 30px;
+  color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+  padding: 10px;
+}
+.cartBox .boxRight span:hover {
+  background-color: var(--secondary-color);
+  color: #fff;
+}
+.cartBox .boxRight span svg {
+  font-size: 18px;
+}
+.cartBox .boxRight input {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+.delete svg{
+  cursor: pointer;
+  font-size: 24px!important;
+}
+.orderCheckout{
+  width: 90%;
+  padding: 15px 0;
+}
+.address{
+  flex: 2;
+}
+.payment{
+  flex: 1;
+}
+.checkout{
+  display: flex;
+}
+.checkout h4{
+  font-size: 18px;
+  letter-spacing: 2px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.addressBox , .addresses{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.addressRadio{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.addressRadio label{
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: capitalize;
+  margin-bottom: 0;
+}
+.newAddress{
+  padding: 15px;
+}
+.newAddressInput{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
+.paymentMethod{
+  width: 200px;
+}
+.submitOrder a{
+  text-decoration: none;
+}

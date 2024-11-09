@@ -1,0 +1,165 @@
+.footerWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.linkToRegister{
+  color: var(--primary-color);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.footerWrapper .joinUs {
+  width: 100%;
+  height: 270px;
+  position: relative;
+  background-color: var(--tertiary-color);
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.joinUs>div{
+  width: 80%;
+}
+.joinUs img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+.joinUs .text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 60%;
+  padding-left: 50px;
+}
+.joinUs .text span {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+.joinUs .text h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  letter-spacing: 1px;
+}
+.joinUs .text p {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+.joinUs .text .subscribeBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+}
+.joinUs .text .subscribeBox svg {
+  font-size: 24px;
+  color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  left: 20px;
+}
+.joinUs .text .subscribeBox input {
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 20px 60px;
+  font-size: 14px;
+  font-weight: 500;
+  width: 600px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.joinUs .text .subscribe {
+  background-color: var(--secondary-color);
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  right: 5px;
+}
+.joinUs .text .subscribe:hover {
+  border: 1px solid var(--secondary-color);
+  background-color: transparent;
+  color: var(--secondary-color);
+}
+.footerWrapper .descriptionBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.footerWrapper .descriptionBox .description {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.footerWrapper .descriptionBox .description p {
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.7);
+  letter-spacing: 1px;
+  margin-bottom: 0;
+}
+.footerWrapper .descriptionBox span svg {
+  font-size: 28px;
+  color: rgba(0, 0, 0, 0.7);
+}
+.footerWrapper .contactBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 10px 0;
+}
+.footerWrapper .contactBox a {
+  text-decoration: none;
+  font-size: 18px;
+  padding: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background-color: var(--primary-color);
+  color: #fff;
+}
+.footerWrapper .contactBox a:hover {
+  color: var(--primary-color);
+  background-color: white;
+}
+.footerWrapper .contactBox svg {
+  font-size: 30px;
+}
+.footerWrapper .footer {
+  padding: 10px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.footerWrapper .footer p {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 0;
+}
+.footerLogo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footerLogo img {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+}

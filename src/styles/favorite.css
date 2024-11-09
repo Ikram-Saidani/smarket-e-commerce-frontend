@@ -1,0 +1,55 @@
+.favorites {
+  width: 100%;
+  padding: 15px 0;
+}
+.FavoritesList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+.favoriteBox {
+  width: 90%;
+  height: 120px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #b5bdbd25;
+  display: flex;
+  justify-content: space-between;
+}
+.favoriteBox:hover {
+  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.3);
+  background-color: #02a6a325;
+}
+.favoriteBox .boxleft {
+  flex: 1;
+}
+.favoriteBox .boxleft img {
+  width: 100px;
+}
+.favoriteBox .boxRight {
+  flex: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.favoriteBox .boxRight h3 {
+  font-size: 1.5rem;
+}
+.favoriteBox .boxRight h4 {
+  font-size: 1.2rem;
+}
+.favoriteBox .boxRight p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+  letter-spacing: 1px;
+}
+.favoriteBox .boxRight .addToCart svg {
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  cursor: pointer;
+}
