@@ -17,9 +17,9 @@ function Navigation() {
       {!isLoginOrRegister && (
         <nav>
           <div className="nav">
-            <div className="container-fluid">
+            <div className="container-fluid m-auto">
               <div className="row">
-                <div className="col-sm-2 navPart1">
+                <div className=" navPart1">
                   <Button className="allCatTab" onClick={() => setOpen(!open)}>
                     <div className="left">
                       <span>

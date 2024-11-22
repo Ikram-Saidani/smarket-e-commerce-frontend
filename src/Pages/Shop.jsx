@@ -11,19 +11,19 @@ function Shop() {
   const itemsPerPage = 10;
 
   
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(`/api/product?page=${currentPage}&limit=${itemsPerPage}`);
-        const data = await response.json();
-        setProducts(data.data);
-        setTotalProducts(data.data.length);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
-    fetchProducts();
-  }, [currentPage]);
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch(`/api/product?page=${currentPage}&limit=${itemsPerPage}`);
+  //       const data = await response.json();
+  //       setProducts(data.data);
+  //       setTotalProducts(data.data.length);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
+  //   fetchProducts();
+  // }, [currentPage]);
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

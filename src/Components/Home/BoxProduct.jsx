@@ -1,27 +1,26 @@
 import React from "react";
-import productImage from "../../assets/images/beauty.png";
 import Rating from "@mui/material/Rating";
 import { TiShoppingCart } from "react-icons/ti";
 import { FaHeart } from "react-icons/fa6";
 import ProductDetails from "./ProductDetails";
 
-function BoxProduct() {
+function BoxProduct({ item }) {
   return (
     <div className="productBox">
       <div className="boxTop">
-          <img src={productImage} alt="..." />
+          <img src={item.image} alt="..." />
         <ProductDetails/>
         <span className="heart">
           <FaHeart />
         </span>
       </div>
       <div className="boxBottom">
-        <h3>product title</h3>
-        <h4>in stock</h4>
+        <h3>{item.title}</h3>
+        <h4 >{item.inStock? "in stock":"not available"}</h4>
         <div className="rating">
           <Rating name="read-only" value={4} readOnly />
         </div>
-        <p>product price $</p>
+        <p>{item.oldPrice}</p>
 
        
           <span className="addToCart">

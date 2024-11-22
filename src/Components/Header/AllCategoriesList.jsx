@@ -6,8 +6,7 @@ import electronics from "../../assets/images/electronics.png";
 import bags from "../../assets/images/bags.png";
 import footwear from "../../assets/images/footwear.png";
 import groceries from "../../assets/images/groceries.png";
-import beauty from "../../assets/images/beauty.png";
-import wellness from "../../assets/images/wellness.png";
+import beauty from "../../assets/images/beauty.png"
 import jewellery from "../../assets/images/jewellery.png";
 
 function AllCategoriesList() {
@@ -17,7 +16,6 @@ function AllCategoriesList() {
     "footwear",
     "jewellery",
     "beauty",
-    "wellness",
     "electronics",
     "groceries",
   ];
@@ -27,14 +25,13 @@ function AllCategoriesList() {
     footwear,
     jewellery,
     beauty,
-    wellness,
     electronics,
     groceries,
   ];
   return (
-    <div className="allCategoriesList posi">
+    <div className="container-fluid allCategoriesList">
       {allCategories.map((item, index) => (
-        <Link key={index} to={`/shop/${item}`} className="categoryLink">
+        <Link key={index} to={`/shop/${item}`} className="categoryLink container-fluid">
           <Button>
             <img src={allCategoriesImages[index]} alt={item} />
             {item}

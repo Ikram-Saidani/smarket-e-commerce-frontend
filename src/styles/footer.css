@@ -3,12 +3,6 @@
   flex-direction: column;
   gap: 20px;
 }
-.linkToRegister{
-  color: var(--primary-color);
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: underline;
-}
 .footerWrapper .joinUs {
   width: 100%;
   height: 270px;
@@ -52,35 +46,27 @@
   color: var(--secondary-color);
   letter-spacing: 1px;
 }
-.joinUs .text p {
-  font-size: 14px;
-  color: rgba(0, 0, 0, 0.6);
-  letter-spacing: 1px;
-}
-.joinUs .text .subscribeBox {
+.joinUs .subscribeBox {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
   margin-top: 20px;
-  position: relative;
-}
-.joinUs .text .subscribeBox svg {
-  font-size: 24px;
-  color: rgba(0, 0, 0, 0.6);
-  position: absolute;
-  left: 20px;
-}
-.joinUs .text .subscribeBox input {
-  outline: none;
+  background-color: rgba(255, 255, 255, 0.781);
+  padding: 10px 20px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 20px 60px;
-  font-size: 14px;
-  font-weight: 500;
-  width: 600px;
+  font-size: 16px!important;
+}
+.joinUs .subscribeBox svg {
+  font-size: 24px;
   color: rgba(0, 0, 0, 0.6);
 }
-.joinUs .text .subscribe {
+.roleForm{
+  width: 30%;
+}
+.joinUs .subscribe {
   background-color: var(--secondary-color);
   color: white;
   font-size: 14px;
@@ -90,8 +76,6 @@
   border: 1px solid transparent;
   outline: none;
   cursor: pointer;
-  position: absolute;
-  right: 5px;
 }
 .joinUs .text .subscribe:hover {
   border: 1px solid var(--secondary-color);
@@ -162,4 +146,65 @@
   width: 200px;
   height: 100px;
   object-fit: cover;
+}
+
+/***********************************************************************************************************************/
+
+@media (min-width: 750px) and (max-width: 1180px) {
+  .joinUs>div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+    flex-direction: row-reverse;
+  }
+  .joinUs img {
+    position: relative;
+    width: 250px;
+    flex: 1;
+  }
+  .joinUs .text{
+    padding: 0;
+    flex: 2;
+  }
+  .joinUs .subscribeBox{
+    width: 500px;
+  }
+}
+
+/***********************************************************************************************************************/
+
+@media (min-width: 340px) and (max-width: 750px) {
+  .joinUs{
+    height: max-content!important;
+    padding: 10px 0;
+  }
+  .joinUs>div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+  }
+  .joinUs img {
+    position: relative;
+    width: 350px;
+  }
+  .joinUs .text{
+    padding: 0;
+  }
+  .joinUs .subscribeBox{
+    width: 300px;
+    margin-left: -25px;
+    display: flex;
+    flex-direction: column;
+  }
+  .roleForm{
+    width: 80%;
+  }
+  .footer p{
+    font-size: 10px;
+  }
 }

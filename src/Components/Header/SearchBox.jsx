@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 
 function SearchBox() {
   return (
-    <div className="headerSearch ml-3 mr-3">
+    <div className="headerSearch">
       <input type="text" placeholder="Search for products..." />
       <Button className="search">
         <IoIosSearch />

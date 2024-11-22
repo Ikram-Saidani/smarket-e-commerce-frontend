@@ -18,6 +18,8 @@ const Register = () => {
     address: "",
     phone: "",
     gender: "",
+    dateOfBirth: "",
+    
   });
 
   const handleChange = (e) => {

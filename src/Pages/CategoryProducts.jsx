@@ -13,23 +13,23 @@ function CategoryProducts() {
   const [totalProducts, setTotalProducts] = useState(0);
   const itemsPerPage = 10;
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await fetch(
-          `/api/product/category/${category}?page=${currentPage}&limit=${itemsPerPage}`
-        );
-        const data = await response.json();
-        setProducts(data.data);
-        setTotalProducts(data.totalCount);
-        setTotalPages(data.totalPages);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         `/api/product/category/${category}?page=${currentPage}&limit=${itemsPerPage}`
+  //       );
+  //       const data = await response.json();
+  //       setProducts(data.data);
+  //       setTotalProducts(data.totalCount);
+  //       setTotalPages(data.totalPages);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, [category, currentPage]);
+  //   fetchProducts();
+  // }, [category, currentPage]);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {

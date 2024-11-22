@@ -1,7 +1,5 @@
 .headerWrapper {
   background-color: #fffcf3;
-  display: flex;
-  flex-direction: column;
 }
 .headerWrapper .top-strip {
   padding: 8px 0px;
@@ -12,18 +10,24 @@
   font-size: 12px;
   font-weight: 500;
 }
-
 .headerWrapper .header {
   width: 95%;
   height: auto;
   padding: 8px 0px;
   margin: auto;
 }
+.logoWrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  max-width: 200px;
+  min-width: 150px;
+}
 .logoWrapper img {
-  width: 100px;
+  width: 80%;
 }
 .headerSearch {
-  width: 60%;
+  width: 500px;
   height: 60px;
   background-color: #f3f4f793;
   padding: 10px;
@@ -60,13 +64,13 @@
   font-size: 25px;
   opacity: 0.7;
 }
-header .part3{
+header .part3 {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 10px;
 }
-.gift{
+.gift {
   gap: 5px;
   display: flex;
   align-items: center;
@@ -74,7 +78,7 @@ header .part3{
   width: max-content;
   cursor: default;
 }
-.score{
+.score {
   font-size: 18px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
@@ -114,7 +118,7 @@ header .part3 .circle {
 header .part3 .circle svg {
   font-size: 22px;
 }
-header .part3 .profileAvatar{
+header .part3 .profileAvatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -198,7 +202,7 @@ nav {
   flex: 0 0 20%;
 }
 .nav .navPart2 {
-  max-width: 80%;
+  width: 80%;
   flex: 0 0 80%;
   padding: 0 15px;
   display: flex;
@@ -266,7 +270,6 @@ nav {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
   margin: auto;
 }
 .allCategoriesBox .allCategoriesList .categoryLink {
@@ -290,41 +293,241 @@ nav {
   background-color: #ffcc002f;
 }
 .allCategoriesBox .allCategoriesList .categoryLink img {
-  width: 50px;
+  max-width: 40px;
   padding: 5px;
   border-radius: 50%;
   background-color: #02a6a325;
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
-.categoriesBar .allCategoriesList {
-  width: 100%;
+.menu {
   display: flex;
-  gap: 15px;
+  justify-content: flex-end !important;
   align-items: center;
-  justify-content: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-.categoriesBar .allCategoriesList .categoryLink {
-  text-decoration: none;
-}
-.categoriesBar .allCategoriesList .categoryLink button {
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  border-radius: 30px;
-  color: rgba(0, 0, 0, 0.6);
+.menu-button {
+  display: none !important;
+  font-size: 1.5rem !important;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  width: 40px !important;
+  height: 40px !important;
+  outline: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  border-radius: 10px !important;
+  color: var(--primary-color) !important;
+  padding: 0 !important;
 }
-.categoriesBar .allCategoriesList .categoryLink button:hover {
-  background-color: #ffcc002f;
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.categoriesBar .allCategoriesList .categoryLink img {
-  width: 50px;
+.part2 {
+  display: flex;
+  gap: 30px;
+}
+
+/***********************************************************************************************************************/
+
+@media (min-width: 750px) and (max-width: 1180px) {
+  .logoWrapper {
+    display: flex;
+    justify-content: center;
+    max-width: 200px;
+    min-width: 150px;
+  }
+  .logoWrapper img {
+    width: 80%;
+  }
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100px;
+    right: 0;
+    width: 60%;
+    background-color: #fffcf3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 5px;
+  }
+  .menu.open {
+    display: flex;
+    z-index: 5000;
+  }
+  .menu-button {
+    display: block !important;
+  }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .part2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+  }
+  .part3 {
+    display: flex;
+    justify-content: space-around !important;
+    align-items: center;
+    padding-bottom: 10px;
+    margin: auto;
+  }
+  .headerSearch {
+    width: 400px;
+  }
+  .nav .list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .nav .list .list-inline-item a button {
+    font-size: 12px;
+    letter-spacing: 1px;
+    padding: 5px;
+  }
+  .nav .help {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+  .nav .navPart2 {
+    justify-content: flex-end;
+    gap: 20px;
+  }
+  .nav .allCatTab{
+    width: 150px;
+    font-size: 10px;
+    padding: 5px;
+  }
+  .nav .allCatTab span.text{
+    margin: 0 !important;
+  }
+  .allCategoriesBox .allCategoriesList {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+  }
+  .allCategoriesBox .allCategoriesList .categoryLink button{
+    border-radius: 0;
+  }
+}
+
+/***********************************************************************************************************************/
+
+@media (min-width: 340px) and (max-width: 750px) {
+  .top-strip p {
+    font-size: 9px !important;
+    padding: 0px !important;
+  }
+  .logoWrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .logoWrapper img {
+    width: 80%;
+  }
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 130px;
+    right: 0;
+    width: 100%;
+    background-color: #fffcf3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  .menu.open {
+    display: flex;
+    z-index: 5000;
+  }
+  .menu-button {
+    display: block !important;
+  }
+  .header .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .part2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .part3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    gap: 5px !important;
+  }
+  .headerSearch {
+    width: 100%;
+  }
+  .nav .list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .nav .list .list-inline-item a button {
+    font-size: 11px;
+    letter-spacing: 0px;
+    padding: 2px;
+    max-width: max-content;
+    min-width: fit-content;
+  }
+  .nav .help {
+    font-size: 10px;
+    letter-spacing: 1px;
+    margin-top: 5px;
+  }
+  .nav .navPart2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center; ;
+    padding: 0;
+  }
+  .nav .navPart1{
+    max-width: 100%;
+    align-self: flex-start;
+  }
+  .nav .allCatTab{
+    padding: 5px;
+    margin: 10px 0;
+  }
+  .nav .allCatTab span.text{
+    font-size: 12px !important;
+    margin-left: 5px !important;
+    text-align: center;
+  }
+  .nav .container-fluid{
+    padding: 0;
+    margin: 0;
+  }
+  .nav .row{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  .allCategoriesBox .allCategoriesList {
+    display: grid;
+   grid-template-columns: 1fr 1fr;
+  }
+  .allCategoriesBox .allCategoriesList .categoryLink button{
+    border-radius: 0;
+  }
 }
