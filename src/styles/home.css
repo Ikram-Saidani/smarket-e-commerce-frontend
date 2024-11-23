@@ -51,6 +51,7 @@ h2 {
   justify-content: center;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .boxLink {
   text-decoration: none !important;
@@ -74,7 +75,7 @@ h2 {
   height: 50%;
   position: relative;
 }
-.productBox .boxTop .discountNumber{
+.productBox .boxTop .discountNumber {
   position: absolute;
   top: 0px;
   left: 0px;
@@ -121,7 +122,7 @@ h2 {
   position: relative;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-.productBox .boxBottom .row{
+.productBox .boxBottom .row {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -136,12 +137,12 @@ h2 {
   padding: 8px 0;
   height: 20%;
 }
-.productBox .boxBottom .coins{
+.productBox .boxBottom .coins {
   font-size: 18px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
   letter-spacing: 1px;
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
 }
 .productBox .boxBottom h4 {
   font-size: 16px;
@@ -155,7 +156,7 @@ h2 {
   color: var(--tertiary-color);
   font-size: 28px;
 }
-.productBox .boxBottom .oldPrice{
+.productBox .boxBottom .oldPrice {
   font-size: 14px;
   text-decoration: line-through;
   font-weight: 500;
@@ -190,6 +191,7 @@ h2 {
   align-items: center;
   justify-content: center;
   margin-top: 40px;
+  flex-wrap: wrap;
 }
 .previous-next {
   cursor: pointer;
@@ -216,6 +218,9 @@ h2 {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   margin-top: -10px;
 }
+.shopPage{
+  display: flex;
+}
 .filter {
   flex: 2;
   display: flex;
@@ -228,13 +233,14 @@ h2 {
   left: 0;
   margin-top: -10px;
 }
-.filterByPrice{
+.filterByPrice {
   padding-top: 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.filterByPrice h3, .filterByRating h3{
+.filterByPrice h3,
+.filterByRating h3 {
   font-size: 20px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.7);
@@ -242,61 +248,92 @@ h2 {
   padding: 8px 0;
   text-transform: uppercase;
 }
-.filterByPrice p,.selectedRating .selectedRatingText{
+.filterByPrice p,
+.selectedRating .selectedRatingText {
   font-size: 16px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.6);
 }
 .filterByPrice .priceRange {
-    width: 220px;
+  width: 220px;
 }
-.range-slider .range-slider__range,.range-slider .range-slider__thumb{
-  background-color: var(--secondary-color)!important;
+.range-slider .range-slider__range,
+.range-slider .range-slider__thumb {
+  background-color: var(--secondary-color) !important;
 }
-.filterByRating{
+.filterByRating {
   padding-bottom: 30px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.ratingFilter{
+.ratingFilter {
   display: flex;
   gap: 10px;
 }
-.filterByRating .ratingFilter .notAll{
+.filterByRating .ratingFilter .notAll {
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
   color: #ccc;
 }
-.filterByRating .ratingFilter .all{
+.filterByRating .ratingFilter .all {
   cursor: pointer;
   font-size: 18px;
   font-weight: 500;
   color: var(--tertiary-color);
 }
-.filterByRating .ratingFilter .selected{
+.filterByRating .ratingFilter .selected {
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   color: var(--tertiary-color);
 }
-.filterByRating .ratingFilter .notSelected{
+.filterByRating .ratingFilter .notSelected {
   cursor: pointer;
   font-size: 16px;
   font-weight: 500;
   color: #ccc;
 }
-.filterByRating .ratingFilter .star{
+.filterByRating .ratingFilter .star {
   color: var(--tertiary-color);
 }
 
 /***********************************************************************************************************************/
 
 @media (min-width: 750px) and (max-width: 1180px) {
+  .homeBannerSection {
+    width: 95%;
+    margin: auto;
+  }
 }
 
 /***********************************************************************************************************************/
 
 @media (min-width: 340px) and (max-width: 750px) {
+  .homeBannerSection {
+    width: 95%;
+    margin: auto;
+  }
+  .shopPage{
+    flex-direction: column;
+  }
+  .filter {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: fit-content;
+    position:static;
+    gap: 15px;
+    padding-bottom: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .filterByPrice {
+    padding-top: 0;
+  }
+  .filterByRating {
+    padding-bottom: 0;
+  }
 }

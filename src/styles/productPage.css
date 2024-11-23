@@ -95,7 +95,6 @@
     letter-spacing: 2px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.8);
-    text-align: justify;
     text-transform: capitalize;
 }
 .productDescription .leftSide p{
@@ -281,3 +280,13 @@
     position: relative;
   }
   
+  /***********************************************************************************************************************/
+  
+  @media (min-width: 340px) and (max-width: 750px) {
+    .productDescription{
+        flex-direction: column;
+    }
+    .addComment .commentRating{
+        flex-direction: column;
+    }
+  }

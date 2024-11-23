@@ -30,7 +30,7 @@ function CategoryProducts() {
   }, [category]);
   
   return (
-    <div className="d-flex">
+    <div className="shopPage">
       <div className="filter">
         <FilterByPrice />
         <FilterByRating />

@@ -9,7 +9,7 @@ import groceries from "../../assets/images/groceries.png";
 import beauty from "../../assets/images/beauty.png"
 import jewellery from "../../assets/images/jewellery.png";
 
-function AllCategoriesList() {
+function AllCategoriesList({setOpen}) {
   const allCategories = [
     "fashion",
     "bags",
@@ -29,6 +29,7 @@ function AllCategoriesList() {
     groceries,
   ];
   const handleScrollWindow = () => {
+    setOpen(false);
     window.scrollTo({
       top: 0,
       behavior: "smooth",
