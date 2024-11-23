@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  position:relative;
 }
 .footerWrapper .joinUs {
   width: 100%;
@@ -121,7 +122,8 @@
 }
 .footerWrapper .contactBox a:hover {
   color: var(--primary-color);
-  background-color: white;
+  background-color: #fcea9b;
+  transition: all 0.2s;
 }
 .footerWrapper .contactBox svg {
   font-size: 30px;
@@ -146,6 +148,24 @@
   width: 200px;
   height: 100px;
   object-fit: cover;
+}
+.footerWrapper .goToTop{
+  position: absolute;
+  padding: 10px 0;
+  color: #fff;
+  background-color: var(--primary-color);
+  font-size: 35px;
+  font-weight: 600;
+  outline: none;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  top: 60%;
+  right: 10%;
+  z-index: 5000;
+}
+.footerWrapper .goToTop:hover{
+  color: var(--primary-color);
+  background-color: #fcea9b;
 }
 
 /***********************************************************************************************************************/

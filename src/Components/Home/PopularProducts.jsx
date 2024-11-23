@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 
 function PopularProducts() {
   const [products, setProducts] = useState([]);
-  
+
   useEffect(() => {
     appAxios
       .get("/api/product/popular")
@@ -26,7 +26,7 @@ function PopularProducts() {
       <h2>Popular Products</h2>
       <p className="underTitle">sign in for exclusive offers.</p>
       <div className="productsList">
-      {(!products || products.length === 0) && (
+        {(!products || products.length === 0) && (
           <p>No products to display at the moment.</p>
         )}
         {products.map((item, index) => (

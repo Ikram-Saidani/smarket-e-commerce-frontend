@@ -1,26 +1,27 @@
-import React, { useState } from 'react';
-import HelpBox from '../Components/HelpAndHope/HelpBox';
-import { Button } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import HelpBox from "../Components/HelpAndHope/HelpBox";
 import "../styles/helpAndHope.css";
+import appAxios from "../utils/axiosConfig";
+import { toast } from "react-toastify";
 
 function HelpAndHope() {
-  const items = [
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-  ];
+  const [items, setItems] = useState([]);
+  useEffect(() => {
+    appAxios
+      .get("/api/helpAndHope")
+      .then((res) => {
+        const fetchedProducts = res.data.data;
+        setItems(fetchedProducts);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
-
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
-
-  const totalPages = Math.ceil(items.length / itemsPerPage);
-
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
+        if (!fetchedProducts || fetchedProducts.length === 0) {
+          toast.warning("No products available in this category.");
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        toast.error("Failed to fetch products. Please try again later.");
+      });
+  }, []);
 
   return (
     <div className="helpProducts container-fluid">
@@ -28,37 +29,9 @@ function HelpAndHope() {
       <p className="underTitle">Donate to help those in need</p>
 
       <div className="helpProductsList">
-        {currentItems.map((item, index) => (
+        {items.map((item, index) => (
           <HelpBox item={item} key={index} />
         ))}
-      </div>
-
-      <div className="pagination">
-        <Button
-          className="previous-next"
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          Previous
-        </Button>
-
-        {Array.from({ length: totalPages }, (_, i) => (
-          <Button
-            key={i + 1}
-            onClick={() => handlePageChange(i + 1)}
-            className={currentPage === i + 1 ? "active" : "inactive"}
-          >
-            {i + 1}
-          </Button>
-        ))}
-
-        <Button
-          className="previous-next"
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          Next
-        </Button>
       </div>
     </div>
   );

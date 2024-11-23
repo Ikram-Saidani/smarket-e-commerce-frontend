@@ -3,40 +3,50 @@ import BoxProduct from "../Components/Home/BoxProduct";
 import { Button } from "@mui/material";
 import FilterByPrice from "../Components/Home/FilterByPrice";
 import FilterByRating from "../Components/Home/FilterByRating";
+import appAxios from "../utils/axiosConfig";
+import { toast } from "react-toastify";
 
 function Shop() {
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
-  const itemsPerPage = 10;
+  const itemsPerPage = 12;
 
-  
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await fetch(`/api/product?page=${currentPage}&limit=${itemsPerPage}`);
-  //       const data = await response.json();
-  //       setProducts(data.data);
-  //       setTotalProducts(data.data.length);
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //     }
-  //   };
-  //   fetchProducts();
-  // }, [currentPage]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await appAxios.get(
+          `/api/product/pagination?page=${currentPage}&limit=${itemsPerPage}`
+        );
 
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentProducts = products.slice(indexOfFirstItem, indexOfLastItem);
+        const { data, totalCount } = response.data;
+        setProducts(data);
+        setTotalProducts(totalCount);
 
+        if (totalCount === 0) {
+          toast.warning("No products available at this moment.");
+        }
+      } catch (error) {
+        console.error("Error fetching products:", error);
+        toast.error("Failed to fetch products. Please try again later.");
+      }
+    };
+
+    fetchProducts();
+  }, [currentPage]);
+
+  const currentProducts = products;
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
   const handlePageChange = (newPage) => {
     if (newPage >= 1 && newPage <= totalPages) {
       setCurrentPage(newPage);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   };
-
   return (
     <div className="d-flex">
       <div className="filter">

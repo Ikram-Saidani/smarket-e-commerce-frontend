@@ -29,6 +29,46 @@
     align-items: center;
     justify-content: center;
     gap: 15px;
+    position: relative;
+}
+.productDescription .rightSide .coins{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background-color: var(--tertiary-color);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding:5px 10px;
+    border-radius: 0 0 0 15px;
+}
+.productDescription .rightSide .discountNumber{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: var(--tertiary-color);
+    color: white;
+    font-size: 20px;
+    font-weight: 600;
+    padding:5px 20px;
+    border-radius: 0 0 15px 0;
+}
+.productDescription .rightSide .row{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.productDescription .rightSide .oldPrice{
+    text-decoration: line-through;
+    font-size: 16px;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.5);
+}
+.productDescription .rightSide .currentPrice{
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 600;
 }
 .productDescription .rightSide img{
     width: 100%;
@@ -39,7 +79,8 @@
     align-items: center;
     gap: 5px;
     color: var(--tertiary-color);
-    font-size: 30px;
+    font-size: 35px;
+    margin-top: 20px;
 }
 .productDescription .leftSide{
     flex: 3;
@@ -50,16 +91,25 @@
     font-family: "Dosis", sans-serif;
 }
 .productDescription .leftSide h3{
-    font-size: 30px;
+    font-size: 25px;
     letter-spacing: 2px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.8);
+    text-align: justify;
+    text-transform: capitalize;
 }
 .productDescription .leftSide p{
-    font-size: 16px;
+    font-size: 18px;
     letter-spacing: 1px;
     color: rgba(0, 0, 0, 0.8);
     text-align: justify;
+}
+.productDescription .leftSide .extraInformation{
+    display: flex;
+    flex-direction: column;
+    line-height: 30px;
+    font-size: 18px;
+    text-transform: capitalize;
 }
 .productDescription .leftSide h4{
     font-size: 20px;
@@ -67,13 +117,13 @@
     font-weight: 600;
     color: rgba(0, 0, 0, 0.8);
 }
-.productDescription .leftSide .inStock{
-    color: yellowgreen;
+.productDescription .rightSide .inStock{
+    color: green;
     font-weight: 600;
     font-size: 28px;
     text-transform: capitalize;
 }
-.productDescription .leftSide .notAvailable{
+.productDescription .rightSide .notAvailable{
     color: var(--primary-color);
     font-weight: 600;
     font-size: 28px;
@@ -92,6 +142,7 @@
 }
 .productDescription .leftSide .inStockButton:hover{
     color: var(--secondary-color);
+    background-color: #02a6a333;
 }
 .productDescription .leftSide .notAvailableButton{
     width: 120px;

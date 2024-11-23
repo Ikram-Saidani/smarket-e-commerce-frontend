@@ -1,15 +1,14 @@
 import React from "react";
-import productImage from "../../assets/images/beauty.png";
 import { Button } from "@mui/material";
+import { baseURL } from "../../utils/config";
 
-function HelpBox() {
+function HelpBox({ item }) {
   return (
     <div className="helpBox">
-      <img src={productImage} alt="..." />
+      <img src={`${baseURL}/${item.image}`} alt={item.title} className="helpImage" />
 
-      <h3 className="mb-0">product title</h3>
-      <h4 className="mb-0">in stock</h4>
-      <p className="mb-0">100 Coin</p>
+      <h3 className="mb-0">{item.title}</h3>
+      <p className="mb-0">{item.coins} coins</p>
 
       <Button className="donate">Donate Now</Button>
     </div>

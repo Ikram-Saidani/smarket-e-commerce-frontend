@@ -11,7 +11,7 @@
 }
 .helpBox {
     width: 215px;
-    height: 400px;
+    height: 350px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -22,22 +22,27 @@
     flex-direction: column;
 }
 .helpBox:hover {
-  box-shadow: 0 7px 7px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 3px 7px 7px rgba(0, 0, 0, 0.3);
   background-color: #02a6a325;
 }
 .helpBox img {
-  width: 180px;
+  width: 100%;
+  object-fit: cover;
 }
 .helpBox h3 {
-  font-size: 18px;
-}
-.helpBox h4 {
-  font-size: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 2px;
+  height: 15%;
 }
 .helpBox p {
   color: var(--primary-color);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 18px;
+  letter-spacing: 2px;
+text-align: center;
 }
 .helpBox .donate {
   outline: none;

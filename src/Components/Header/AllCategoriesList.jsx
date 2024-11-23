@@ -28,11 +28,18 @@ function AllCategoriesList() {
     electronics,
     groceries,
   ];
+  const handleScrollWindow = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+  
   return (
     <div className="container-fluid allCategoriesList">
       {allCategories.map((item, index) => (
         <Link key={index} to={`/shop/${item}`} className="categoryLink container-fluid">
-          <Button>
+          <Button onClick={handleScrollWindow}>
             <img src={allCategoriesImages[index]} alt={item} />
             {item}
           </Button>
