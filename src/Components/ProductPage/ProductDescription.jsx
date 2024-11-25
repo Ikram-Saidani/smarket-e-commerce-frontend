@@ -2,7 +2,7 @@ import { Button, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import appAxios from "../../utils/axiosConfig";
 import { toast } from "react-toastify";
-function ProductDescription({ itemId }) {
+function ProductDescription({ item }) {
   function renderExtraInformation(product) {
     switch (product.category) {
       case "fashion":
@@ -51,16 +51,31 @@ function ProductDescription({ itemId }) {
         return <span>No extra information available.</span>;
     }
   }
-
+  const handleAddToCart = () => {
+    if (!item.inStock) {
+      toast.warning(
+        "This product is not available at the moment. Please try again later!"
+      );
+    }
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let itemExist = cart.find((product) => product._id === item._id);
+    if (itemExist) {
+      toast.warning("This product is already in your cart.");
+    } else {
+      cart.push(item);
+      localStorage.setItem("cart", JSON.stringify(cart));
+      toast.success("Product added to cart");
+    }
+  };
   const [product, setProduct] = useState({});
   useEffect(() => {
-    if (!itemId) {
-      console.error("itemId is undefined or null.");
+    if (!item._id) {
+      console.error("item id is undefined or null.");
       toast.error("Invalid product ID.");
       return;
     }
     appAxios
-      .get(`/api/product/${itemId}`)
+      .get(`/api/product/${item._id}`)
       .then((res) => {
         const fetchedProduct = res.data.data;
         setProduct(fetchedProduct);
@@ -72,7 +87,7 @@ function ProductDescription({ itemId }) {
         console.error("Error fetching product:", err);
         toast.error("Failed to fetch product. Please try again later.");
       });
-  }, [itemId]);
+  }, [item._id]);
 
   return (
     <div className="productDescription">
@@ -111,7 +126,7 @@ function ProductDescription({ itemId }) {
         </div>
 
         {product.inStock ? (
-          <Button className="inStockButton">Shop Now</Button>
+          <Button className="inStockButton" onClick={handleAddToCart}>Shop Now</Button>
         ) : (
           <Button className="notAvailableButton" disabled>
             Shop Now

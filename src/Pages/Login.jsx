@@ -1,23 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import { toast } from "react-toastify";
+import appAxios from "../utils/axiosConfig"; 
 import { Button } from "@mui/material";
+import "../styles/loginANDregister.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    username: "",
     email: "",
     password: "",
   });
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    try {
+      const response = await appAxios.post("/api/auth/login", formData);
+      const { token, user } = response.data.data;
+
+      localStorage.setItem("authToken", token);
+      toast.success(`Welcome back, ${user.name}`);
+      navigate("/profile");
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Invalid email or password. Please try again.");
+    }
   };
 
   return (

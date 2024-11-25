@@ -5,37 +5,37 @@ import appAxios from "../utils/axiosConfig";
 import { toast } from "react-toastify";
 
 function SearchResults() {
-  const [searchParams] = useSearchParams(); // Get query parameters
+  const [searchParams] = useSearchParams();
   const [searchedProducts, setSearchedProducts] = useState([]);
-  const [loading, setLoading] = useState(false); // To handle loading state
-  const title = searchParams.get("title"); // Extract 'title' parameter
+  const [loading, setLoading] = useState(false); 
+  const title = searchParams.get("title"); 
 
   useEffect(() => {
     const fetchSearchedProducts = async () => {
       try {
-        setLoading(true); // Start loading
+        setLoading(true);
         const response = await appAxios.get(`/api/product/search`, {
-          params: { title }, // Pass title as query parameter
+          params: { title },
         });
 
         if (response.data.data.products && response.data.data.products.length > 0) {
-          setSearchedProducts(response.data.data.products); // Update state with fetched products
+          setSearchedProducts(response.data.data.products);
         } else {
-          toast.warning("No products available with this title."); // Show warning toast
-          setSearchedProducts([]); // Empty results
+          toast.warning("No products available with this title.");
+          setSearchedProducts([]);
         }
       } catch (error) {
-        toast.error("Failed to fetch products. Please try again later."); // Show error toast
-        setSearchedProducts([]); // Empty results
+        toast.error("Failed to fetch products. Please try again later.");
+        setSearchedProducts([]); 
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
 
     if (title) {
       fetchSearchedProducts();
     }
-  }, [title]); // Re-fetch if the title changes
+  }, [title]);
 
   return (
     <div className="allProducts container-fluid">

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
+import appAxios from "../utils/axiosConfig";
 import "../styles/loginANDregister.css";
+import { toast } from "react-toastify";
 import {
   Button,
   FormControl,
@@ -9,6 +11,7 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
+
 const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -19,17 +22,30 @@ const Register = () => {
     phone: "",
     gender: "",
     dateOfBirth: "",
-    
   });
-
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
+    if (formData.password !== formData.confirmPassword) {
+      toast.warning("Passwords do not match");
+      return;
+    }
+appAxios.post("/api/auth/register", {
+      ...formData,
+    }).then((response) => {
+      toast.success("Welcome to Smarket, you can login now");
+      navigate("/login");
+    }).catch((err) => {
+      toast.error("Registration Failed, Please try again");
+      console.log("Registration error:", err)
+    }
+    );
   };
 
   return (
@@ -121,7 +137,6 @@ const Register = () => {
           </div>
 
           <div className="genderAndAddress">
-         
             <div className="gender">
               <FormControl className="genderForm">
                 <InputLabel id="demo-simple-select-helper-label">
@@ -135,9 +150,7 @@ const Register = () => {
                   label="gender"
                   onChange={handleChange}
                 >
-                  <MenuItem value={"male"}>
-                    Male
-                  </MenuItem>
+                  <MenuItem value={"male"}>Male</MenuItem>
                   <MenuItem value={"female"}>Female</MenuItem>
                 </Select>
               </FormControl>

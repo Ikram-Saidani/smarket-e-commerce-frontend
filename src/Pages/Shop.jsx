@@ -25,14 +25,11 @@ function Shop() {
       
         setPriceRange((prevRange) => {
           const newRange = [minimunPrice, maximunPrice];
-          // Update only if the range has changed
           return prevRange[0] !== newRange[0] || prevRange[1] !== newRange[1]
             ? newRange
             : prevRange;
         });
 
-        // setPriceRange([minimunPrice,maximunPrice]);
-        console.log(priceRange);
         setProducts(data);
         setTotalProducts(totalCount);
         if (response.data.data.totalCount === 0) {

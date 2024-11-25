@@ -12,7 +12,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-function ProductDetails({itemId}) {
+function ProductDetails({item}) {
   const [isOpenModal, setIsOpenModal] = useState(false);
   return (
     <>
@@ -37,8 +37,8 @@ function ProductDetails({itemId}) {
           <p className="underTitle">Look at the details of this product</p>
 
           <div className="productInfo">
-            <ProductDescription itemId={itemId} />
-            <ProductComments itemId={itemId}/>
+            <ProductDescription item={item} />
+            <ProductComments itemId={item._id}/>
             <AddComment />
           </div>
         </div>
