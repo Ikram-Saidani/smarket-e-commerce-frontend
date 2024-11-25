@@ -25,8 +25,7 @@ function Header() {
         <div className="headerWrapper">
           <div className="container-fluid top-strip">
             <p className="mb-0 mt-0 text-center">
-              Transition from shopper to ambassador at SMarket and play a{" "}
-              <b>key</b> role in building our community.
+              Transition from shopper to ambassador at SMarket  –  Play a <b>key</b> role in building our community.
             </p>
           </div>
           <header className="header">

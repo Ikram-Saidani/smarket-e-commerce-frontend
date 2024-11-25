@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Typography from "@mui/material/Typography";
 
-const FilterByRating = () => {
-  const [selectedRating, setSelectedRating] = useState(0);
+const FilterByRating = ({ratingFilter,setRatingFilter}) => {
 
   const handleRatingClick = (rating) => {
-    setSelectedRating(rating);
+    setRatingFilter(rating);
   };
 
   return (
@@ -16,13 +15,13 @@ const FilterByRating = () => {
       <div className="selectedRating">
         <Typography variant="body1" className="selectedRatingText">
           Selected rating:{" "}
-          {selectedRating > 0 ? `${selectedRating} Stars & up` : "All ratings"}
+          {ratingFilter > 0 ? `${ratingFilter} Stars & up` : "All ratings"}
         </Typography>
       </div>
       <div className="ratingFilter">
         <p
           onClick={() => handleRatingClick(0)}
-          className={selectedRating === 0 ? "all" : "notAll"}
+          className={ratingFilter === 0 ? "all" : "notAll"}
         >
           All
         </p>
@@ -31,9 +30,9 @@ const FilterByRating = () => {
           <span
             key={rating}
             onClick={() => handleRatingClick(rating)}
-            className={selectedRating === rating ? "selected" : "notSelected"}
+            className={ratingFilter === rating ? "selected" : "notSelected"}
           >
-            {rating <= selectedRating ? <StarIcon className="star" /> : <StarBorderIcon />}
+            {rating <= ratingFilter ? <StarIcon className="star" /> : <StarBorderIcon />}
           </span>
         ))}
       </div>

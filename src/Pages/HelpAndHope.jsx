@@ -14,7 +14,7 @@ function HelpAndHope() {
         setItems(fetchedProducts);
 
         if (!fetchedProducts || fetchedProducts.length === 0) {
-          toast.warning("No products available in this category.");
+          toast.warning("No products available to donate.");
         }
       })
       .catch((err) => {
@@ -29,9 +29,11 @@ function HelpAndHope() {
       <p className="underTitle">Donate to help those in need</p>
 
       <div className="helpProductsList">
-        {items.map((item, index) => (
-          <HelpBox item={item} key={index} />
-        ))}
+        {items.length > 0 ? (
+          items.map((item, index) => <HelpBox item={item} key={index} />)
+        ) : (
+          <p>No products available to donate.</p>
+        )}
       </div>
     </div>
   );

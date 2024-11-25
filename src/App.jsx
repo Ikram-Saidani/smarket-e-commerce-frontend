@@ -18,6 +18,7 @@ import OrdersHistory from "./Pages/OrdersHistory";
 import Profile from "./Pages/Profile";
 import Wishlist from "./Pages/Wishlist";
 import OrderDetails from "./Pages/OrderDetails";
+import SearchResults from "./Pages/SearchResults";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/about" element={<About />} />
           <Route path="/shop" element={<Shop />} />
+          <Route path="/search" element={<SearchResults />} />
           <Route path="/helpAndHope" element={<HelpAndHope />} />
           <Route path="/wishlist" element={<Wishlist />} />
           <Route path="/cart" element={<Cart />} />

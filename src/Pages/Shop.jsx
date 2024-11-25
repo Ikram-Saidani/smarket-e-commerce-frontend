@@ -11,31 +11,40 @@ function Shop() {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalProducts, setTotalProducts] = useState(0);
   const itemsPerPage = 12;
+  const [ratingFilter, setRatingFilter] = useState(0);
 
+  const [priceRange, setPriceRange] = useState([0,1/0]);
+ const [newPriceRange, setNewPriceRange] = useState([priceRange[0],priceRange[1]]);
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await appAxios.get(
-          `/api/product/pagination?page=${currentPage}&limit=${itemsPerPage}`
-        );
+    appAxios.get(`/api/product/pagination?page=${currentPage}&limit=${itemsPerPage}&minPrice=${newPriceRange[0]}&maxPrice=${newPriceRange[1]}&minRating=${ratingFilter}`)
+      .then((response) => {
+        const data=response.data.data.data;
+        const totalCount = response.data.data.totalCount;
+        const minimunPrice=response.data.data.minimunPrice;
+        const maximunPrice=response.data.data.maximunPrice;
+      
+        setPriceRange((prevRange) => {
+          const newRange = [minimunPrice, maximunPrice];
+          // Update only if the range has changed
+          return prevRange[0] !== newRange[0] || prevRange[1] !== newRange[1]
+            ? newRange
+            : prevRange;
+        });
 
-        const { data, totalCount } = response.data;
+        // setPriceRange([minimunPrice,maximunPrice]);
+        console.log(priceRange);
         setProducts(data);
         setTotalProducts(totalCount);
-
-        if (totalCount === 0) {
+        if (response.data.data.totalCount === 0) {
           toast.warning("No products available at this moment.");
         }
-      } catch (error) {
+      })
+      .catch((error) => {
         console.error("Error fetching products:", error);
         toast.error("Failed to fetch products. Please try again later.");
-      }
-    };
+      });
+  }, [currentPage , ratingFilter, newPriceRange, priceRange]);
 
-    fetchProducts();
-  }, [currentPage]);
-
-  const currentProducts = products;
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
   const handlePageChange = (newPage) => {
@@ -50,16 +59,19 @@ function Shop() {
   return (
     <div className="shopPage">
       <div className="filter">
-        <FilterByPrice />
-        <FilterByRating />
+        <FilterByPrice priceRange={priceRange} setNewPriceRange={setNewPriceRange} newPriceRange={newPriceRange}/>
+        <FilterByRating
+          ratingFilter={ratingFilter}
+          setRatingFilter={setRatingFilter}
+        />
       </div>
       <div className="allProducts container-fluid">
         <h2>Shop: Explore our wide range of products!</h2>
         <p className="underTitle">Make your life easier and save more money</p>
 
         <div className="allProductsList">
-          {currentProducts.length > 0 ? (
-            currentProducts.map((product) => (
+          {products.length > 0 ? (
+            products.map((product) => (
               <BoxProduct item={product} key={product._id} />
             ))
           ) : (

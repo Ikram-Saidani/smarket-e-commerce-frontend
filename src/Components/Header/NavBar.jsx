@@ -8,21 +8,29 @@ import { FaPhone } from "react-icons/fa";
 import { Button } from "@mui/material";
 
 function NavBar() {
+  const handlePageScroll = () => {
+   
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+
   return (
     <>
       <ul className="list list-inline ml-0">
         <li className="list-inline-item">
           
-          <Link to={"/"}><Button><AiOutlineHome/>&nbsp;Home</Button></Link>
+          <Link to={"/"}><Button onClick={handlePageScroll}><AiOutlineHome/>&nbsp;Home</Button></Link>
         </li>
         <li className="list-inline-item">
-          <Link to={"/shop"}><Button><TiShoppingCart/>&nbsp;Shop</Button></Link>
+          <Link to={"/shop"}><Button onClick={handlePageScroll}><TiShoppingCart/>&nbsp;Shop</Button></Link>
         </li>
         <li className="list-inline-item">
-          <Link to={"/helpAndHope"}><Button><FaHandsHelping />&nbsp;Help & Hope</Button></Link>
+          <Link to={"/helpAndHope"} onClick={handlePageScroll}><Button><FaHandsHelping />&nbsp;Help & Hope</Button></Link>
         </li>
         <li className="list-inline-item">
-          <Link to={"/about"}><Button><PiSealQuestionBold/>&nbsp;About Us</Button></Link>
+          <Link to={"/about"}><Button onClick={handlePageScroll}><PiSealQuestionBold/>&nbsp;About Us</Button></Link>
         </li>
       </ul>
       <span className="help">

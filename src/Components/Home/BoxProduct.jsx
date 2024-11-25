@@ -61,7 +61,7 @@ function BoxProduct({ item }) {
           {item.inStock ? "in stock" : "not available"}
         </h4>
         <div className="rating">
-          <Rating name="read-only" value={4} readOnly />
+          <Rating name="read-only" value={item.rate.rating} readOnly />
         </div>
         <div className="row">
           {item.discount > 0 && <p className="oldPrice">{item.oldPrice}$</p>}
