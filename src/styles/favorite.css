@@ -28,16 +28,18 @@
   flex: 1;
 }
 .favoriteBox .boxleft img {
-  width: 100px;
+  height: 100%;
 }
 .favoriteBox .boxRight {
-  flex: 3;
+  flex: 7;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 .favoriteBox .boxRight h3 {
-  font-size: 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: "Dosis, sans-serif";
 }
 .favoriteBox .boxRight h4 {
   font-size: 1.2rem;
@@ -50,6 +52,29 @@
 }
 .favoriteBox .boxRight .addToCart svg {
   font-size: 1.8rem;
-  color: var(--primary-color);
+  color: var(--tertiary-color);
   cursor: pointer;
+}
+.removeWish{
+  color: var(--primary-color);
+  font-size: 28px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/***********************************************************************************************************************/
+  
+@media (min-width: 340px) and (max-width: 750px) {
+  .favoriteBox {
+    flex-direction: column;
+    height: max-content;
+    justify-content: center;
+    align-items: center;
+  }
+  .favoriteBox .boxRight h3 {
+    width: 43%;
+  }
+  .favoriteBox .boxleft img {
+    height: 100px;
+  }
 }

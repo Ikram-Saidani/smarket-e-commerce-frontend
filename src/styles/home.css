@@ -1,3 +1,6 @@
+button{
+  outline: none !important;
+}
 p{
   letter-spacing: 1px;
   font-family: "Dosis", sans-serif;

@@ -1,21 +1,39 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
-export const existUserContext = createContext();
+export const UserContext = createContext();
 
-function UserContext({ children }) {
-  const [existUser, setExistUser] = useState({
-    name: 'John Doe',
-    avatar: 'https://via.placeholder.com/150',
-    address: '123 Main St, Anytown, USA',
-    phone: '123-456-7890',
-  
-  });
+const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("authToken");
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedToken && storedUser) {
+      setToken(storedToken);
+      setUser(storedUser);
+    }
+  }, []);
+
+  const login = (userData, authToken) => {
+    setUser(userData);
+    setToken(authToken);
+    localStorage.setItem("authToken", authToken);
+    localStorage.setItem("user", JSON.stringify(userData));
+  };
+
+  const logout = () => {
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+  };
 
   return (
-    <existUserContext.Provider value={{ existUser, setExistUser }}>
+    <UserContext.Provider value={{ user, token, login, logout }}>
       {children}
-    </existUserContext.Provider>
+    </UserContext.Provider>
   );
-}
+};
 
-export default UserContext;
+export default UserProvider;

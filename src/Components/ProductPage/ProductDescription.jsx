@@ -7,21 +7,19 @@ function ProductDescription({ item }) {
     switch (product.category) {
       case "fashion":
         return (
-          <span><strong>Size :</strong> &nbsp;
+          <span>
+            <strong>Size :</strong> &nbsp;
             {product.size?.map((s, index) => (
-              <span key={index}>
-                 {s.size} , &nbsp;
-              </span>
+              <span key={index}>{s.size} , &nbsp;</span>
             ))}
           </span>
         );
       case "footwear":
         return (
-          <span><strong>Size :</strong> &nbsp;
+          <span>
+            <strong>Size :</strong> &nbsp;
             {product.shoeSize?.map((s, index) => (
-              <span key={index}>
-                 {s.shoeSize} , &nbsp;
-              </span>
+              <span key={index}>{s.shoeSize} , &nbsp;</span>
             ))}
           </span>
         );
@@ -41,12 +39,18 @@ function ProductDescription({ item }) {
           </span>
         );
       case "groceries":
-        return product && product.expiryDate && (
-          <span>
-  Expiry Date : {product.expiryDate ? new Date(product.expiryDate).toLocaleDateString() : "Not available"}
-</span>
-        )
-        
+        return (
+          product &&
+          product.expiryDate && (
+            <span>
+              Expiry Date :{" "}
+              {product.expiryDate
+                ? new Date(product.expiryDate).toLocaleDateString()
+                : "Not available"}
+            </span>
+          )
+        );
+
       default:
         return <span>No extra information available.</span>;
     }
@@ -112,7 +116,9 @@ function ProductDescription({ item }) {
           {product.discount > 0 && (
             <h4 className="oldPrice">{product.oldPrice}$</h4>
           )}
-        <h4 className="currentPrice">{product.price}$</h4>
+          <h4 className="currentPrice">
+            {(Math.round(product.price * 10) / 10).toFixed(1)}$
+          </h4>
         </div>
         <h5 className={product.inStock ? "inStock" : "notAvailable"}>
           {product.inStock ? "In stock" : "Not available"}
@@ -126,7 +132,9 @@ function ProductDescription({ item }) {
         </div>
 
         {product.inStock ? (
-          <Button className="inStockButton" onClick={handleAddToCart}>Shop Now</Button>
+          <Button className="inStockButton" onClick={handleAddToCart}>
+            Shop Now
+          </Button>
         ) : (
           <Button className="notAvailableButton" disabled>
             Shop Now

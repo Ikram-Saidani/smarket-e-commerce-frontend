@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/images/logo.png";
 import { toast } from "react-toastify";
-import appAxios from "../utils/axiosConfig"; 
+import appAxios from "../utils/axiosConfig";
 import { Button } from "@mui/material";
 import "../styles/loginANDregister.css";
+import { UserContext } from "../context/UserContext";
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
-  });
+  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { login } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -24,9 +23,9 @@ const Login = () => {
       const response = await appAxios.post("/api/auth/login", formData);
       const { token, user } = response.data.data;
 
-      localStorage.setItem("authToken", token);
+      login(user, token);
       toast.success(`Welcome back, ${user.name}`);
-      navigate("/profile");
+      navigate(-1);
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Invalid email or password. Please try again.");
@@ -53,7 +52,6 @@ const Login = () => {
               required
             />
           </div>
-
           <div>
             <label htmlFor="password">Password</label>
             <input
@@ -66,13 +64,12 @@ const Login = () => {
               required
             />
           </div>
-
           <div>
             <Button type="submit">Sign In</Button>
           </div>
         </form>
         <h4>
-          Don't have an account?
+          Don't have an account?{" "}
           <span className="link">
             <Link to={"/register"}>Sign Up</Link>
           </span>

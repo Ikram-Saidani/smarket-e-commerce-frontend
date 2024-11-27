@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Menu, MenuItem, IconButton } from "@mui/material";
 import profileAvatar from "../../assets/images/men-avatar.png";
+import { toast } from "react-toastify";
+import { UserContext } from "../../context/UserContext";
+
 const UserProfileDropDown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const { logout } = useContext(UserContext);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -11,6 +15,12 @@ const UserProfileDropDown = () => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully!");
+    handleClose();
   };
 
   return (
@@ -22,9 +32,7 @@ const UserProfileDropDown = () => {
         <MenuItem component={Link} to="/profile" onClick={handleClose}>
           Profile
         </MenuItem>
-        <MenuItem component={Link} to="/login">
-          Logout
-        </MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </div>
   );

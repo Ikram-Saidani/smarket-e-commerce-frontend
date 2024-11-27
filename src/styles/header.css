@@ -437,7 +437,7 @@ nav {
     flex-direction: column;
     position: absolute;
     top: 130px;
-    right: 15px;
+    right: 2px;
     width: 100%;
     background-color: #fffcf3;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

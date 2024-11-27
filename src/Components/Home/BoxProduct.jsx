@@ -70,7 +70,7 @@ function BoxProduct({ item }) {
         </div>
         <div className="row">
           {item.discount > 0 && <p className="oldPrice">{item.oldPrice}$</p>}
-          <p className="currentPrice">{item.price}$</p>
+          <p className="currentPrice">{item.price.toFixed(1)}$</p>
         </div>
         <p className="coins">{item.coins} coins</p>
         <span className="addToCart" onClick={handleAddToCart}>
