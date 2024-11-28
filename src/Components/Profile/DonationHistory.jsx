@@ -1,26 +1,24 @@
-import React from 'react'
-import CertificationBadge from './CertificationBadge'
+import React from "react";
+import CertificationBadge from "./CertificationBadge";
 
-function DonationHistory({user}) {
+function DonationHistory({ donationHistory }) {
   return (
     <div className="donationInfo">
-
-        <div>
+      <div>
         <h4>Donation History</h4>
-          <ul>
-            {user.donationHistory.length > 0 ? (
-              user.donationHistory.map((donation, index) => (
-                <li key={index}>{donation}</li>
-              ))
-            ) : (
-              <li>No donation history available.</li>
-            )}
-          </ul>
-        </div>
+        <ul>
+          {donationHistory.map((donation, index) => (
+            <li key={index}>
+             - {donation.productDonated.title} : {donation.productDonated.coins}{" "}
+              coins - {new Date(donation.createdAt).toLocaleDateString()}
+            </li>
+          ))}
+        </ul>
+      </div>
 
-          {user.hasDonationCertification && <CertificationBadge name={user.name} />}
-        </div>
-  )
+      <CertificationBadge />
+    </div>
+  );
 }
 
-export default DonationHistory
+export default DonationHistory;

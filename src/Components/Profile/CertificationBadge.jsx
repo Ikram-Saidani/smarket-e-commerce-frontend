@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import html2canvas from 'html2canvas';
 import { Button } from '@mui/material';
 import smarketLogo from '../../assets/images/logo.png';
+import { UserContext } from '../../context/UserContext';
 
 const CertificationBadge = ({ name }) => {
+  const {user} = useContext(UserContext);
   const generateImage = () => {
     const certificationBadge = document.querySelector('.certificationBadge');
     const downloadButton = certificationBadge.querySelector('.download');
@@ -25,7 +27,7 @@ const CertificationBadge = ({ name }) => {
       <img src={smarketLogo} alt="SMarket Logo" className='logo' />
       <h3>Donation Certification</h3>
       <p>SMarket has the honor to certify that</p>
-      <h4>{name}</h4>
+      <h4>{user.name}</h4>
       <p>has made generous contributions to support our initiatives</p>
       <Button onClick={generateImage} className="download">
         Download Certification

@@ -1,16 +1,21 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, MenuItem, IconButton } from "@mui/material";
-import profileAvatar from "../../assets/images/men-avatar.png";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/UserContext";
+import { baseURL } from "../../utils/config";
 
 const UserProfileDropDown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
-  const { logout } = useContext(UserContext);
-
+  const navigate = useNavigate();
+  const { logout,user } = useContext(UserContext);
   const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+    if(anchorEl===null){
+      setAnchorEl(event.currentTarget);
+  }
+  else{
+      setAnchorEl(null)
+  }
   };
 
   const handleClose = () => {
@@ -21,16 +26,20 @@ const UserProfileDropDown = () => {
     logout();
     toast.success("Logged out successfully!");
     handleClose();
+    navigate("/");
   };
 
   return (
     <div className="ml-auto cartTab d-flex align-items-center">
       <IconButton onClick={handleClick} className="circle ml-2">
-        <img src={profileAvatar} alt="User Avatar" className="profileAvatar" />
+        <img src={baseURL+user?.avatar} alt="Avatar" className="profileAvatar" />
       </IconButton>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem component={Link} to="/profile" onClick={handleClose}>
           Profile
+        </MenuItem>
+        <MenuItem component={Link} to="/ordersHistory" onClick={handleClose}>
+          History
         </MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>

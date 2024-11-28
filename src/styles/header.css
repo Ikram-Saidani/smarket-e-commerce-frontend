@@ -77,6 +77,12 @@ header .part3 {
   justify-content: center;
   width: max-content;
   cursor: default;
+  color: var(--primary-color);
+  font-size: 18px;
+  font-weight: 600;
+}
+.gift svg{
+  font-size: 22px;
 }
 .score {
   font-size: 18px;
@@ -86,9 +92,8 @@ header .part3 {
 header .part3 .circleUser {
   align-items: center;
   justify-content: center;
-  min-width: 90px;
   height: 45px;
-  width: 90px;
+  width: max-content;
   border-radius: 40px;
   outline: none;
   color: #fff;

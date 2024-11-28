@@ -3,36 +3,61 @@ import LoyaltyProgram from "../Components/Profile/LoyaltyProgram";
 import DonationHistory from "../Components/Profile/DonationHistory";
 import ProfileInfo from "../Components/Profile/ProfileInfo";
 import ProfileHeader from "../Components/Profile/ProfileHeader";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import appAxios from "../utils/axiosConfig";
+import { toast } from "react-toastify";
 
 const Profile = () => {
-  const user={
-    name: "ikram",
-    email: "user@email.com",
-    phone: "00000000",
-    addresses: ["bardo,tunis, 2000", "bizerte,tunis, 7021"],
-    gender: "female",
-    dateOfBirth: "1996-02-16",
-    donationHistory: ["product: 1,coins:300", "product: 2,coins:500"],
-    loyaltyPoints: 100,
-    hasDonationCertification: true,
-  };
+  const navigate = useNavigate();
+  const [donationHistory, setDonationHistory] = useState([]);
 
- 
+  useEffect(() => {
+    if (!localStorage.getItem("authToken")) {
+      navigate("/");
+      return;
+    }
+
+    const fetchDonationHistory = async () => {
+      try {
+        const token = localStorage.getItem("authToken");
+
+        const response = await appAxios.get(
+          "/api/donationHistory/userdonationHistories",
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        const { data } = response.data || {};
+
+        if (data) {
+          setDonationHistory(data);
+        } else {
+          toast.info("No donation history available.");
+        }
+      } catch (error) {
+        console.error("Error fetching donation history:", error.response || error);
+        toast.error("Failed to load donation history.");
+      }
+    };
+
+    fetchDonationHistory();
+  }, [navigate]);
+
   return (
     <div className="profile container-fluid">
-        <div className="profileHeader">
-        <ProfileHeader user={user}/>
-     
-       <LoyaltyProgram user={user} />
-       
-        
-        </div>
-        {user.donationHistory.length > 0 && (
-          <DonationHistory user={user} />
-        )}
-        <ProfileInfo user={user} />
+      <div className="profileHeader">
+        <ProfileHeader />
+        {/* <LoyaltyProgram /> */}
+      </div>
+      {/* <ProfileInfo /> */}
+      {donationHistory.length > 0 && (
+        <DonationHistory donationHistory={donationHistory} />
+      ) }
     </div>
   );
 };
 
 export default Profile;
+

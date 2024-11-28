@@ -1,14 +1,45 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Join from "../../assets/images/Join.png";
 import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { MdOutlineMailOutline } from "react-icons/md";
+import { UserContext } from "../../context/UserContext";
+import { toast } from "react-toastify";
+import appAxios from "../../utils/axiosConfig";
 
 function JoinUs() {
+  const { token } = useContext(UserContext);
   const [role, setRole] = useState('');
   const handleRoleChange = (event) => {
     setRole(event.target.value);
   };
-  
+  const handleSubmit = async () => {
+    if (!token) {
+      toast.error("Please log in to proceed!");
+      return;
+    }
+
+    try {
+      const message = `I want to be ${role} for Smarket`;
+      const response = await appAxios.post(
+        "/api/roleRequest/ambassadorOrCoordinator",
+        { message },
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      if (response.data.status === "SUCCESS") {
+        toast.success(response.data.data);
+      } else {
+        toast.warning(response.data.message);
+      }
+    } catch (error) {
+      console.error("Role request error:", error);
+      toast.error("An error occurred while sending your request");
+    }
+  };
   return (
     <div className="joinUs container-fluid">
       <div>
@@ -36,7 +67,7 @@ function JoinUs() {
               </Select>
             </FormControl>
             <span>for Smarket.</span>
-            <Button className="subscribe">Send</Button>
+            <Button className="subscribe" onClick={handleSubmit}>Send</Button>
           </div>
         </div>
       </div>

@@ -10,19 +10,24 @@ import "../../styles/header.css";
 import { IoGiftOutline } from "react-icons/io5";
 import UserProfileDropDown from "./UserProfileDropDown";
 import { UserContext } from "../../context/UserContext";
+import Notifications from "./Notifications";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [authToken, setAuthToken] = useState(null);
   const location = useLocation();
+  const [numberOfNotifications, setNumberOfNotifications] = useState(0);
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
   const [numberOfItemsInWishlist, setNumberOfItemsInWishlist] = useState(0);
-  const {token}=useContext(UserContext);
+  const { token,user } = useContext(UserContext);
   const updateCounts = () => {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const wishListItems = JSON.parse(localStorage.getItem("wishList")) || [];
+    const notifications =
+      JSON.parse(localStorage.getItem("notifications")) || 0;
     setNumberOfItemsInCart(cartItems.length);
     setNumberOfItemsInWishlist(wishListItems.length);
+    setNumberOfNotifications(notifications);
   };
 
   useEffect(() => {
@@ -48,13 +53,12 @@ function Header() {
     const simulateUpdate = () => {
       emitStorageEvent();
     };
-    const interval = setInterval(simulateUpdate, 2000);
+    const interval = setInterval(simulateUpdate, 1000);
     return () => clearInterval(interval);
   }, []);
   useEffect(() => {
-    
     setAuthToken(token);
-  }, [ token]);
+  }, [token]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -101,20 +105,19 @@ function Header() {
                         </Link>
                       ) : (
                         <>
-                          <Link to="/ordersHistory">
-                            <Button className="circleUser">History</Button>
-                          </Link>
                           <UserProfileDropDown />
                           <div className="ml-auto cartTab d-flex align-items-center">
                             <div className="gift">
-                              <Button
-                                disabled
-                                className="circle cursor-none ml-2"
-                              >
-                                <IoGiftOutline />
-                              </Button>
-                              <p className="score mb-0">100 coins</p>
+                              <IoGiftOutline />
+
+                              <p className="score mb-0">{user.coinsEarned} coins</p>
                             </div>
+                          </div>
+                          <div className="ml-auto cartTab d-flex align-items-center">
+                            <Notifications />
+                            <span className="count d-flex align-items-center justify-content-center">
+                              {numberOfNotifications || 0}
+                            </span>
                           </div>
                         </>
                       )}

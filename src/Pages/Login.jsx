@@ -25,7 +25,7 @@ const Login = () => {
 
       login(user, token);
       toast.success(`Welcome back, ${user.name}`);
-      navigate(-1);
+      navigate('/');
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Invalid email or password. Please try again.");

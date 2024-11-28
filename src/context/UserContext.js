@@ -1,6 +1,14 @@
 import React, { createContext, useState, useEffect } from "react";
 
-export const UserContext = createContext();
+export const UserContext = createContext(
+  {
+    user: null,
+    setUser: () => {},
+    token: null,
+    login: () => {},
+    logout: () => {},
+  }
+);
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -13,7 +21,7 @@ const UserProvider = ({ children }) => {
       setToken(storedToken);
       setUser(storedUser);
     }
-  }, []);
+  }, [ user, token ]);
 
   const login = (userData, authToken) => {
     setUser(userData);
