@@ -96,7 +96,6 @@ function About() {
         <article>
           <h4>Why Choose SMarket?</h4>
           <ul>
-            
             <li>
               <strong>Diverse Product Selection:</strong> With thousands of
               items across categories, you'll find exactly what you need, from
@@ -132,8 +131,8 @@ function About() {
       <footer className="aboutFooter">
         <p>
           Thank you for choosing SMarket. Together, let's create a better
-          shopping experience, supporting humanitarian initiatives, and make a positive
-          impact in our communities!
+          shopping experience, supporting humanitarian initiatives, and make a
+          positive impact in our communities!
         </p>
       </footer>
     </div>

@@ -47,8 +47,11 @@ function BoxProduct({ item }) {
       <div className="boxTop">
         <img src={item.image} alt="..." />
         <ProductDetails item={item} />
-        <span className="heart" style={{ color: isLiked ? "red" : "black" }} onClick={handleAddToWishList}>
-          
+        <span
+          className="heart"
+          style={{ color: isLiked ? "red" : "black" }}
+          onClick={handleAddToWishList}
+        >
           <FaHeart />
         </span>
         {item.discount > 0 && (

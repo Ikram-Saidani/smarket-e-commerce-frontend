@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button } from "@mui/material";
 import { UserContext } from "../../context/UserContext";
 import { baseURL } from "../../utils/config";
@@ -6,11 +6,41 @@ import appAxios from "../../utils/axiosConfig";
 import { toast } from "react-toastify";
 
 function ProfileHeader() {
-  const { token, user } = useContext(UserContext);
+  const token = localStorage.getItem("authToken");
+  const { user, setUser } = useContext(UserContext);
+  const [group, setGroup] = useState([]);
   const [avatar, setAvatar] = useState(null);
   const [preview, setPreview] = useState(
-    user?.avatar ? `${baseURL}${user.avatar}` : ""
+    user?.avatar ? `${baseURL}${user?.avatar}` : ""
   );
+  useEffect(() => {
+    if (!user?.groupId && user?.groupId == null) return;
+    appAxios
+      .get(`/api/group/${user?.groupId}`, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setGroup(res.data.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching group:", err.response || err);
+        toast.error("Failed to load group.");
+      });
+  }, [user, token]);
+  useEffect(() => {
+    if (!token) return;
+    appAxios
+      .get("/api/user/me", {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setUser(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch user:", error.response || error);
+        toast.error("Failed to load user information.");
+      });
+  }, [token, setUser]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -40,10 +70,7 @@ function ProfileHeader() {
           },
         }
       );
-      localStorage.setItem(
-        "user",
-        JSON.stringify({ ...user, avatar: response.data.data.avatar })
-      );
+      setUser({ ...user, avatar: response.data.data.avatar });
 
       setPreview(`${baseURL}${response.data.data.avatar}`);
       toast.success("Avatar updated successfully!");
@@ -75,7 +102,20 @@ function ProfileHeader() {
       <Button className="editProfile" onClick={handleUpdateAvatar}>
         Edit
       </Button>
-      <h3>Hello, {user?.name}! {` (${user?.role})`}</h3>
+      <h3>
+        Hello, {user?.name}! {` (${user?.role})`}
+      </h3>
+      {user?.groupId !== null && (
+        <div className="group">
+          <h3>Meet Your Group Members :</h3>
+          {group.map((g) => (
+            <h4 key={g._id}>
+              <strong> {g.role} :</strong>
+              <br /> {g.name} {g.phone}
+            </h4>
+          ))}
+        </div>
+      )}
     </header>
   );
 }

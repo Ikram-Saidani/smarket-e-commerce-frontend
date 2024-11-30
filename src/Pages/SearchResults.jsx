@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 function SearchResults() {
   const [searchParams] = useSearchParams();
   const [searchedProducts, setSearchedProducts] = useState([]);
-  const [loading, setLoading] = useState(false); 
-  const title = searchParams.get("title"); 
+  const [loading, setLoading] = useState(false);
+  const title = searchParams.get("title");
 
   useEffect(() => {
     const fetchSearchedProducts = async () => {
@@ -18,7 +18,10 @@ function SearchResults() {
           params: { title },
         });
 
-        if (response.data.data.products && response.data.data.products.length > 0) {
+        if (
+          response.data.data.products &&
+          response.data.data.products.length > 0
+        ) {
           setSearchedProducts(response.data.data.products);
         } else {
           toast.warning("No products available with this title.");
@@ -26,7 +29,7 @@ function SearchResults() {
         }
       } catch (error) {
         toast.error("Failed to fetch products. Please try again later.");
-        setSearchedProducts([]); 
+        setSearchedProducts([]);
       } finally {
         setLoading(false);
       }

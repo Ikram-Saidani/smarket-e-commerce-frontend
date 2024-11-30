@@ -17,9 +17,16 @@ const Cart = () => {
         ))}
         <h3>Total $</h3>
         <Button onClick={() => setOpenCheckout(true)}>
-          <span className="mb-1"><IoBagCheckOutline /></span> checkout
+          <span className="mb-1">
+            <IoBagCheckOutline />
+          </span>{" "}
+          checkout
         </Button>
-      {openCheckout && <div className="orderCheckout"><OrderChekout/></div>}
+        {openCheckout && (
+          <div className="orderCheckout">
+            <OrderChekout />
+          </div>
+        )}
       </div>
     </div>
   );

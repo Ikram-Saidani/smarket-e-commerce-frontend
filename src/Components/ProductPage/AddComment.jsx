@@ -33,10 +33,7 @@ function AddComment({ itemId, setComments }) {
       );
 
       toast.success("Comment added successfully!");
-      setComments((prevComments) => [
-        ...prevComments,
-        response.data.data,
-      ]);
+      setComments((prevComments) => [...prevComments, response.data.data]);
 
       setComment("");
       setRating(0);

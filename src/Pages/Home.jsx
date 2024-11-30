@@ -12,7 +12,7 @@ function Home() {
     <div className="home">
       <HomeBanner />
       <PopularProducts />
-      <Publicity/>
+      <Publicity />
       <NewProducts />
       <div className="disc-prod">
         <img src={disc} alt="discount" />

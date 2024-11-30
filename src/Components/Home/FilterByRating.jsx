@@ -3,8 +3,7 @@ import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import Typography from "@mui/material/Typography";
 
-const FilterByRating = ({ratingFilter,setRatingFilter}) => {
-
+const FilterByRating = ({ ratingFilter, setRatingFilter }) => {
   const handleRatingClick = (rating) => {
     setRatingFilter(rating);
   };
@@ -32,7 +31,11 @@ const FilterByRating = ({ratingFilter,setRatingFilter}) => {
             onClick={() => handleRatingClick(rating)}
             className={ratingFilter === rating ? "selected" : "notSelected"}
           >
-            {rating <= ratingFilter ? <StarIcon className="star" /> : <StarBorderIcon />}
+            {rating <= ratingFilter ? (
+              <StarIcon className="star" />
+            ) : (
+              <StarBorderIcon />
+            )}
           </span>
         ))}
       </div>

@@ -125,6 +125,7 @@
   font-weight: 600;
   color: rgba(0, 0, 0, 0.8);
   letter-spacing: 2px;
+  text-align: center;
 }
 .register-login h4 .link{
   color: var(--primary-color);

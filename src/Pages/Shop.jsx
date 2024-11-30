@@ -12,17 +12,22 @@ function Shop() {
   const [totalProducts, setTotalProducts] = useState(0);
   const itemsPerPage = 12;
   const [ratingFilter, setRatingFilter] = useState(0);
-
-  const [priceRange, setPriceRange] = useState([0,1/0]);
- const [newPriceRange, setNewPriceRange] = useState([priceRange[0],priceRange[1]]);
+  const [priceRange, setPriceRange] = useState([0, 1 / 0]);
+  const [newPriceRange, setNewPriceRange] = useState([
+    priceRange[0],
+    priceRange[1],
+  ]);
   useEffect(() => {
-    appAxios.get(`/api/product/pagination?page=${currentPage}&limit=${itemsPerPage}&minPrice=${newPriceRange[0]}&maxPrice=${newPriceRange[1]}&minRating=${ratingFilter}`)
+    appAxios
+      .get(
+        `/api/product/pagination?page=${currentPage}&limit=${itemsPerPage}&minPrice=${newPriceRange[0]}&maxPrice=${newPriceRange[1]}&minRating=${ratingFilter}`
+      )
       .then((response) => {
-        const data=response.data.data.data;
+        const data = response.data.data.data;
         const totalCount = response.data.data.totalCount;
-        const minimunPrice=response.data.data.minimunPrice;
-        const maximunPrice=response.data.data.maximunPrice;
-      
+        const minimunPrice = response.data.data.minimunPrice;
+        const maximunPrice = response.data.data.maximunPrice;
+
         setPriceRange((prevRange) => {
           const newRange = [minimunPrice, maximunPrice];
           return prevRange[0] !== newRange[0] || prevRange[1] !== newRange[1]
@@ -40,7 +45,7 @@ function Shop() {
         console.error("Error fetching products:", error);
         toast.error("Failed to fetch products. Please try again later.");
       });
-  }, [currentPage , ratingFilter, newPriceRange, priceRange]);
+  }, [currentPage, ratingFilter, newPriceRange, priceRange]);
 
   const totalPages = Math.ceil(totalProducts / itemsPerPage);
 
@@ -56,7 +61,11 @@ function Shop() {
   return (
     <div className="shopPage">
       <div className="filter">
-        <FilterByPrice priceRange={priceRange} setNewPriceRange={setNewPriceRange} newPriceRange={newPriceRange}/>
+        <FilterByPrice
+          priceRange={priceRange}
+          setNewPriceRange={setNewPriceRange}
+          newPriceRange={newPriceRange}
+        />
         <FilterByRating
           ratingFilter={ratingFilter}
           setRatingFilter={setRatingFilter}

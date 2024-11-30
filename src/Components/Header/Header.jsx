@@ -11,26 +11,27 @@ import { IoGiftOutline } from "react-icons/io5";
 import UserProfileDropDown from "./UserProfileDropDown";
 import { UserContext } from "../../context/UserContext";
 import Notifications from "./Notifications";
+import appAxios from "../../utils/axiosConfig";
+import { toast } from "react-toastify";
 
 function Header() {
+  const token = localStorage.getItem("authToken");
+  const { user } = useContext(UserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [authToken, setAuthToken] = useState(null);
   const location = useLocation();
+  const [notif, setNotif] = useState([]);
   const [numberOfNotifications, setNumberOfNotifications] = useState(0);
   const [numberOfItemsInCart, setNumberOfItemsInCart] = useState(0);
   const [numberOfItemsInWishlist, setNumberOfItemsInWishlist] = useState(0);
-  const { token,user } = useContext(UserContext);
-  const updateCounts = () => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    const wishListItems = JSON.parse(localStorage.getItem("wishList")) || [];
-    const notifications =
-      JSON.parse(localStorage.getItem("notifications")) || 0;
-    setNumberOfItemsInCart(cartItems.length);
-    setNumberOfItemsInWishlist(wishListItems.length);
-    setNumberOfNotifications(notifications);
-  };
 
   useEffect(() => {
+    const updateCounts = () => {
+      const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+      const wishListItems = JSON.parse(localStorage.getItem("wishList")) || [];
+      setNumberOfItemsInCart(cartItems.length);
+      setNumberOfItemsInWishlist(wishListItems.length);
+      setNumberOfNotifications(notif.length);
+    };
     const handleStorageUpdate = () => {
       updateCounts();
     };
@@ -42,7 +43,7 @@ function Header() {
     return () => {
       window.removeEventListener("storage-updated", handleStorageUpdate);
     };
-  }, []);
+  }, [notif]);
 
   const emitStorageEvent = () => {
     const event = new Event("storage-updated");
@@ -56,13 +57,39 @@ function Header() {
     const interval = setInterval(simulateUpdate, 1000);
     return () => clearInterval(interval);
   }, []);
-  useEffect(() => {
-    setAuthToken(token);
-  }, [token]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    if (!token) {
+      toast.warning("Please log in to view notifications.");
+      return;
+    }
+
+    appAxios
+      .get("/api/notification", {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((response) => {
+        const { notifications } = response.data?.data || {};
+
+        if (notifications) {
+          setNotif(notifications);
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Error fetching notifications:",
+          error.response?.data || error
+        );
+        toast.error("Failed to fetch notifications.");
+      });
+  }, [token]);
+
   const isLoginOrRegister =
     location.pathname === "/login" || location.pathname === "/register";
   return (
@@ -97,7 +124,7 @@ function Header() {
                     <SearchBox />
 
                     <div className="part3 d-flex align-items-center ml-auto">
-                      {!authToken ? (
+                      {!token ? (
                         <Link to="/login">
                           <Button className="circleUser">
                             <FiUser /> Sign in
@@ -110,11 +137,13 @@ function Header() {
                             <div className="gift">
                               <IoGiftOutline />
 
-                              <p className="score mb-0">{user.coinsEarned} coins</p>
+                              <p className="score mb-0">
+                                {user?.coinsEarned} coins
+                              </p>
                             </div>
                           </div>
                           <div className="ml-auto cartTab d-flex align-items-center">
-                            <Notifications />
+                            <Notifications notif={notif} />
                             <span className="count d-flex align-items-center justify-content-center">
                               {numberOfNotifications || 0}
                             </span>

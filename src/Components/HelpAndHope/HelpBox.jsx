@@ -1,38 +1,36 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@mui/material";
 import { baseURL } from "../../utils/config";
 import { toast } from "react-toastify";
 import appAxios from "../../utils/axiosConfig";
+import { UserContext } from "../../context/UserContext";
 
 function HelpBox({ item }) {
+  const {user,setUser} = useContext(UserContext);
+  const authToken = localStorage.getItem("authToken");
   const handleDonateAction = () => {
-    const authToken=localStorage.getItem("authToken");
-  
     if (!authToken) {
       toast.warning("You need to log in to donate.");
       return;
     }
-  
+
     if (!item || !item.coins) {
       toast.warning("Invalid donation item.");
       return;
     }
-  
+
     const orderDonation = {
       productDonated: item._id,
     };
-  
+
     appAxios
-      .post(
-        `/api/donationHistory/postDonationHistory`,
-        orderDonation,
-        {
-          headers: {
-            Authorization: authToken,
-          },
-        }
-      )
+      .post(`/api/donationHistory/postDonationHistory`, orderDonation, {
+        headers: {
+          Authorization: authToken,
+        },
+      })
       .then((response) => {
+        setUser({...user, coinsEarned: user.coinsEarned - item.coins});
         toast.success(response.data.data.message);
       })
       .catch((error) => {
@@ -42,7 +40,6 @@ function HelpBox({ item }) {
         console.error("Donation error:", error);
       });
   };
-  
 
   return (
     <div className="helpBox">

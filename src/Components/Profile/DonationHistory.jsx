@@ -9,8 +9,9 @@ function DonationHistory({ donationHistory }) {
         <ul>
           {donationHistory.map((donation, index) => (
             <li key={index}>
-             - {donation.productDonated.title} : {donation.productDonated.coins}{" "}
-              coins - {new Date(donation.createdAt).toLocaleDateString()}
+              - {donation.productDonated.title} :{" "}
+              {donation.productDonated.coins} coins -{" "}
+              {new Date(donation.createdAt).toLocaleDateString()}
             </li>
           ))}
         </ul>

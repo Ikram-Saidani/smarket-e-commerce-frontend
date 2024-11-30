@@ -1,4 +1,4 @@
-import React ,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import BoxProduct from "./BoxProduct";
 import appAxios from "../../utils/axiosConfig";
 import { toast } from "react-toastify";
@@ -28,7 +28,7 @@ function FeaturedProducts() {
         Do not miss the current offers until the end of the week.
       </p>
       <div className="productsList">
-      {(!products || products.length === 0) && (
+        {(!products || products.length === 0) && (
           <p>No products to display at the moment.</p>
         )}
         {products.map((item, index) => (

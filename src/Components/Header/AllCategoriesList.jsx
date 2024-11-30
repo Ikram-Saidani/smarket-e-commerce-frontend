@@ -6,10 +6,10 @@ import electronics from "../../assets/images/electronics.png";
 import bags from "../../assets/images/bags.png";
 import footwear from "../../assets/images/footwear.png";
 import groceries from "../../assets/images/groceries.png";
-import beauty from "../../assets/images/beauty.png"
+import beauty from "../../assets/images/beauty.png";
 import jewellery from "../../assets/images/jewellery.png";
 
-function AllCategoriesList({setOpen}) {
+function AllCategoriesList({ setOpen }) {
   const allCategories = [
     "fashion",
     "bags",
@@ -35,11 +35,16 @@ function AllCategoriesList({setOpen}) {
       behavior: "smooth",
     });
   };
-  
+
   return (
     <div className="container-fluid allCategoriesList">
       {allCategories.map((item, index) => (
-        <Link key={index} to={`/shop/${item}`} className="categoryLink container-fluid">
+        <Link
+          key={index}
+          to={`/shop/${item}`}
+          //send the categorySelected 
+          className="categoryLink container-fluid"
+        >
           <Button onClick={handleScrollWindow}>
             <img src={allCategoriesImages[index]} alt={item} />
             {item}

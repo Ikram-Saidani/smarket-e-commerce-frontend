@@ -1,14 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Join from "../../assets/images/Join.png";
-import { Button, FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
 import { MdOutlineMailOutline } from "react-icons/md";
-import { UserContext } from "../../context/UserContext";
 import { toast } from "react-toastify";
 import appAxios from "../../utils/axiosConfig";
 
 function JoinUs() {
-  const { token } = useContext(UserContext);
-  const [role, setRole] = useState('');
+  const token = localStorage.getItem("authToken");
+  const [role, setRole] = useState("");
   const handleRoleChange = (event) => {
     setRole(event.target.value);
   };
@@ -51,23 +56,25 @@ function JoinUs() {
             <MdOutlineMailOutline />
             <span>I want to be</span>
             <FormControl className="roleForm">
-            <InputLabel id="demo-simple-select-helper-label">
-                  Select one
-                </InputLabel>
+              <InputLabel id="demo-simple-select-helper-label">
+                Select one
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-helper-label"
                 id="demo-simple-select-helper role"
                 name="role"
                 label="role"
                 value={role}
-  onChange={handleRoleChange}
+                onChange={handleRoleChange}
               >
                 <MenuItem value={"ambassador"}>ambassador</MenuItem>
                 <MenuItem value={"coordinator"}>coordinator</MenuItem>
               </Select>
             </FormControl>
             <span>for Smarket.</span>
-            <Button className="subscribe" onClick={handleSubmit}>Send</Button>
+            <Button className="subscribe" onClick={handleSubmit}>
+              Send
+            </Button>
           </div>
         </div>
       </div>

@@ -9,16 +9,28 @@ import { toast } from "react-toastify";
 function CategoryProducts() {
   const { category } = useParams();
   const [products, setProducts] = useState([]);
- 
-
+  const [ratingFilter, setRatingFilter] = useState(0);
+  const [priceRange, setPriceRange] = useState([0, 1 / 0]);
+  const [newPriceRange, setNewPriceRange] = useState([
+    priceRange[0],
+    priceRange[1],
+  ]);
+  
   useEffect(() => {
     appAxios
-    .get(`/api/product/category/${category}`)
-      .then((res) => {
-        const fetchedProducts = res.data.data;
-        setProducts(fetchedProducts);
-        
-        if (!fetchedProducts || fetchedProducts.length === 0) {
+      .get(`/api/product/category?category=${category}&minPrice=${newPriceRange[0]}&maxPrice=${newPriceRange[1]}&minRating=${ratingFilter}`)
+      .then((response) => {
+        const data = response.data.data.data;
+        const minimunPrice = response.data.data.minimunPrice;
+        const maximunPrice = response.data.data.maximunPrice;
+        setPriceRange((prevRange) => {
+          const newRange = [minimunPrice, maximunPrice];
+          return prevRange[0] !== newRange[0] || prevRange[1] !== newRange[1]
+            ? newRange
+            : prevRange;
+        });
+        setProducts(data);
+        if (response.data.data.totalCount === 0) {
           toast.warning("No products available in this category.");
         }
       })
@@ -26,14 +38,20 @@ function CategoryProducts() {
         console.error("Error fetching products:", err);
         toast.error("Failed to fetch products. Please try again later.");
       });
-    
-  }, [category]);
-  
+  }, [category, ratingFilter, newPriceRange]);
+
   return (
     <div className="shopPage">
       <div className="filter">
-        <FilterByPrice />
-        <FilterByRating />
+      <FilterByPrice
+          priceRange={priceRange}
+          setNewPriceRange={setNewPriceRange}
+          newPriceRange={newPriceRange}
+        />
+        <FilterByRating
+          ratingFilter={ratingFilter}
+          setRatingFilter={setRatingFilter}
+        />
       </div>
 
       <div className="allProducts container-fluid">
@@ -47,8 +65,6 @@ function CategoryProducts() {
             <p>No products available in this category.</p>
           )}
         </div>
-
-       
       </div>
     </div>
   );

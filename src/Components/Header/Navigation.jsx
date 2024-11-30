@@ -41,7 +41,7 @@ function Navigation() {
             </div>
           </div>
           <div className="allCategoriesBox">
-            {open && <AllCategoriesList setOpen={setOpen}/>}
+            {open && <AllCategoriesList setOpen={setOpen} />}
           </div>
         </nav>
       )}

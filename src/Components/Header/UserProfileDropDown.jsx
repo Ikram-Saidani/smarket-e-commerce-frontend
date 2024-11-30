@@ -8,14 +8,13 @@ import { baseURL } from "../../utils/config";
 const UserProfileDropDown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const { logout,user } = useContext(UserContext);
+  const { logout, user } = useContext(UserContext);
   const handleClick = (event) => {
-    if(anchorEl===null){
+    if (anchorEl === null) {
       setAnchorEl(event.currentTarget);
-  }
-  else{
-      setAnchorEl(null)
-  }
+    } else {
+      setAnchorEl(null);
+    }
   };
 
   const handleClose = () => {
@@ -32,7 +31,11 @@ const UserProfileDropDown = () => {
   return (
     <div className="ml-auto cartTab d-flex align-items-center">
       <IconButton onClick={handleClick} className="circle ml-2">
-        <img src={baseURL+user?.avatar} alt="Avatar" className="profileAvatar" />
+        <img
+          src={baseURL + user?.avatar}
+          alt="Avatar"
+          className="profileAvatar"
+        />
       </IconButton>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
         <MenuItem component={Link} to="/profile" onClick={handleClose}>

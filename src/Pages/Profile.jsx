@@ -6,22 +6,19 @@ import ProfileHeader from "../Components/Profile/ProfileHeader";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import appAxios from "../utils/axiosConfig";
-import { toast } from "react-toastify";
 
 const Profile = () => {
   const navigate = useNavigate();
   const [donationHistory, setDonationHistory] = useState([]);
-
+  const token = localStorage.getItem("authToken");
   useEffect(() => {
-    if (!localStorage.getItem("authToken")) {
+    if (!token) {
       navigate("/");
       return;
     }
 
     const fetchDonationHistory = async () => {
       try {
-        const token = localStorage.getItem("authToken");
-
         const response = await appAxios.get(
           "/api/donationHistory/userdonationHistories",
           {
@@ -30,34 +27,33 @@ const Profile = () => {
         );
 
         const { data } = response.data || {};
-
         if (data) {
           setDonationHistory(data);
-        } else {
-          toast.info("No donation history available.");
-        }
+        } 
       } catch (error) {
-        console.error("Error fetching donation history:", error.response || error);
-        toast.error("Failed to load donation history.");
+        console.error(
+          "Error fetching donation history:",
+          error.response || error
+        );
+       
       }
     };
 
     fetchDonationHistory();
-  }, [navigate]);
+  }, [navigate, token]);
 
   return (
     <div className="profile container-fluid">
       <div className="profileHeader">
         <ProfileHeader />
-        {/* <LoyaltyProgram /> */}
+        <LoyaltyProgram />
       </div>
-      {/* <ProfileInfo /> */}
       {donationHistory.length > 0 && (
         <DonationHistory donationHistory={donationHistory} />
-      ) }
+      )}
+      <ProfileInfo />
     </div>
   );
 };
 
 export default Profile;
-

@@ -4,14 +4,14 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 function SearchBox() {
-  const [query, setQuery] = useState(""); // Store input value
-  const navigate = useNavigate(); // To handle navigation
+  const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevent default form behavior
+    e.preventDefault();
     if (query.trim()) {
-      navigate(`/search?title=${(query.trim())}`); // Navigate to SearchResults with query
-      setQuery(""); // Clear input field
+      navigate(`/search?title=${query.trim()}`);
+      setQuery("");
     } else {
       alert("Please enter a search term.");
     }
@@ -21,9 +21,10 @@ function SearchBox() {
     <div className="headerSearch">
       <input
         type="text"
+        name="search"
         placeholder="Search for products..."
         value={query}
-        onChange={(e) => setQuery(e.target.value)} // Update query state
+        onChange={(e) => setQuery(e.target.value)}
       />
       <Button className="search" onClick={handleSearch}>
         <IoIosSearch />

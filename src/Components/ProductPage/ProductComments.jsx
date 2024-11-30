@@ -2,7 +2,7 @@ import React from "react";
 import { baseURL } from "../../utils/config";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
-import appAxios from "../../utils/axiosConfig"; // Assuming you have a configured Axios instance
+import appAxios from "../../utils/axiosConfig";
 
 function ProductComments({ comments, setComments }) {
   const handleDeleteComment = async (commentId) => {
@@ -19,7 +19,9 @@ function ProductComments({ comments, setComments }) {
         },
       });
 
-      setComments((prevComments) => prevComments.filter((comment) => comment._id !== commentId));
+      setComments((prevComments) =>
+        prevComments.filter((comment) => comment._id !== commentId)
+      );
 
       toast.success("Comment deleted successfully!");
     } catch (error) {
