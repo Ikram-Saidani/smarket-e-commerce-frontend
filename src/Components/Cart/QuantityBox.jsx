@@ -1,28 +1,33 @@
 import React from "react";
-import { useState } from "react";
 import { FaMinus, FaPlus } from "react-icons/fa";
+import { toast } from "react-toastify";
 
-function QuantityBox({ item }) {
-  const [quantityValue, setQuantityValue] = useState(1);
-  const minus = () => {
-    if (quantityValue > 1) {
-      setQuantityValue(quantityValue - 1);
+function QuantityBox({ cartItem,plus,minus }) {
+  const handleIncr = () => {
+    if(cartItem.quantity<cartItem.countInStock){
+      plus(cartItem._id);
+    }else{
+      toast.info("Enough stock available");
     }
   };
-  const plus = () => {
-    if (item.inStock > quantityValue) {
-      setQuantityValue(quantityValue + 1);
+  const handleDecr = () => {
+    if(cartItem.quantity>1){
+      minus(cartItem._id);
     }
   };
   return (
     <>
-      <span onClick={minus}>
-        <FaMinus />
-      </span>
-      <input type="text" value={quantityValue} />
-      <span onClick={plus}>
-        <FaPlus />
-      </span>
+      <span
+        className="inputQuantity"
+      >{cartItem.quantity}</span>
+      <div className="plusMinus">
+        <span onClick={handleIncr}>
+          <FaPlus />
+        </span>
+        <span onClick={handleDecr}>
+          <FaMinus />
+        </span>
+      </div>
     </>
   );
 }

@@ -11,8 +11,11 @@ function ProfileHeader() {
   const [group, setGroup] = useState([]);
   const [avatar, setAvatar] = useState(null);
   const [preview, setPreview] = useState(
-    user?.avatar ? `${baseURL}${user?.avatar}` : ""
+   `${baseURL}${user?.avatar}`
   );
+  useEffect(() => {
+    setPreview(`${baseURL}${user?.avatar}`);
+  }, [user?.avatar]);
   useEffect(() => {
     if (!user?.groupId && user?.groupId == null) return;
     appAxios
@@ -26,21 +29,7 @@ function ProfileHeader() {
         console.error("Error fetching group:", err.response || err);
         toast.error("Failed to load group.");
       });
-  }, [user, token]);
-  useEffect(() => {
-    if (!token) return;
-    appAxios
-      .get("/api/user/me", {
-        headers: { Authorization: token },
-      })
-      .then((res) => {
-        setUser(res.data.data);
-      })
-      .catch((error) => {
-        console.error("Failed to fetch user:", error.response || error);
-        toast.error("Failed to load user information.");
-      });
-  }, [token, setUser]);
+  }, [user?.groupId, token]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -105,7 +94,7 @@ function ProfileHeader() {
       <h3>
         Hello, {user?.name}! {` (${user?.role})`}
       </h3>
-      {user?.groupId !== null && (
+      {group.length>0 && (
         <div className="group">
           <h3>Meet Your Group Members :</h3>
           {group.map((g) => (

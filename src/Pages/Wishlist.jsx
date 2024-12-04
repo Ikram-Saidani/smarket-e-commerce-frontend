@@ -4,10 +4,12 @@ import FavoriteBox from "../Components/Favorites/FavoriteBox";
 
 const Wishlist = () => {
   const [favorites, setFavorites] = useState([]);
+
   useEffect(() => {
     const storedFavorites = JSON.parse(localStorage.getItem("wishList")) || [];
     setFavorites(storedFavorites);
   }, []);
+
   const updateFavorites = (updatedList) => {
     setFavorites(updatedList);
     localStorage.setItem("wishList", JSON.stringify(updatedList));

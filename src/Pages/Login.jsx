@@ -9,7 +9,7 @@ import { UserContext } from "../context/UserContext";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const { login } = useContext(UserContext);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,9 +21,10 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await appAxios.post("/api/auth/login", formData);
-      const { token, user } = response.data.data;
-
-      login(user, token);
+      const token = response.data.data.token;
+      const user = response.data.data.user;
+      localStorage.setItem("authToken", token);
+      setUser(user);
       toast.success(`Welcome back, ${user.name}`);
       navigate("/");
     } catch (error) {

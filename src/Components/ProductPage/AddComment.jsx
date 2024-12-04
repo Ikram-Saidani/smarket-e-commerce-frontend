@@ -10,8 +10,8 @@ function AddComment({ itemId, setComments }) {
   const [rating, setRating] = useState(0);
 
   const handleAddComment = async () => {
-    const authToken = localStorage.getItem("authToken");
-    if (!authToken) {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
       toast.warning("You need to login to add a comment.");
       return;
     }
@@ -27,7 +27,7 @@ function AddComment({ itemId, setComments }) {
         { comment, rating },
         {
           headers: {
-            Authorization: authToken,
+            Authorization: token,
           },
         }
       );

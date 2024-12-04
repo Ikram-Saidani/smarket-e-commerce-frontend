@@ -36,16 +36,18 @@ const Register = () => {
       toast.warning("Passwords do not match");
       return;
     }
-appAxios.post("/api/auth/register", {
-      ...formData,
-    }).then((response) => {
-      toast.success("Welcome to Smarket, you can login now");
-      navigate("/login");
-    }).catch((err) => {
-      toast.error("Registration Failed, Please try again");
-      console.log("Registration error:", err)
-    }
-    );
+    appAxios
+      .post("/api/auth/register", {
+        ...formData,
+      })
+      .then((response) => {
+        toast.success("Welcome to Smarket, you can login now");
+        navigate("/login");
+      })
+      .catch((err) => {
+        toast.error("Registration Failed, Please try again");
+        console.log("Registration error:", err);
+      });
   };
 
   return (

@@ -9,8 +9,8 @@ import appAxios from "../utils/axiosConfig";
 
 const Profile = () => {
   const navigate = useNavigate();
-  const [donationHistory, setDonationHistory] = useState([]);
   const token = localStorage.getItem("authToken");
+  const [donationHistory, setDonationHistory] = useState([]);
   useEffect(() => {
     if (!token) {
       navigate("/");
@@ -25,17 +25,17 @@ const Profile = () => {
             headers: { Authorization: token },
           }
         );
-
         const { data } = response.data || {};
         if (data) {
           setDonationHistory(data);
-        } 
+        }else{
+          setDonationHistory([]);
+        }
       } catch (error) {
         console.error(
           "Error fetching donation history:",
           error.response || error
         );
-       
       }
     };
 

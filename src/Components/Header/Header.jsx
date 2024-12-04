@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 
 function Header() {
   const token = localStorage.getItem("authToken");
-  const { user } = useContext(UserContext);
+  const { user,setUser } = useContext(UserContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const [notif, setNotif] = useState([]);
@@ -43,7 +43,7 @@ function Header() {
     return () => {
       window.removeEventListener("storage-updated", handleStorageUpdate);
     };
-  }, [notif]);
+  }, [notif, setNotif]);
 
   const emitStorageEvent = () => {
     const event = new Event("storage-updated");
@@ -64,7 +64,6 @@ function Header() {
 
   useEffect(() => {
     if (!token) {
-      toast.warning("Please log in to view notifications.");
       return;
     }
 
@@ -86,9 +85,23 @@ function Header() {
           "Error fetching notifications:",
           error.response?.data || error
         );
-        toast.error("Failed to fetch notifications.");
       });
   }, [token]);
+  
+  useEffect(() => {
+    if (!token) return;
+    appAxios
+      .get("/api/user/me", {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setUser(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch user:", error.response || error);
+        toast.error("Failed to load user information.");
+      });
+  }, [setUser, token]);
 
   const isLoginOrRegister =
     location.pathname === "/login" || location.pathname === "/register";
@@ -124,13 +137,14 @@ function Header() {
                     <SearchBox />
 
                     <div className="part3 d-flex align-items-center ml-auto">
-                      {!token ? (
+                      {!token &&(
                         <Link to="/login">
                           <Button className="circleUser">
                             <FiUser /> Sign in
                           </Button>
                         </Link>
-                      ) : (
+                      )} 
+                      {token && (
                         <>
                           <UserProfileDropDown />
                           <div className="ml-auto cartTab d-flex align-items-center">
@@ -138,7 +152,7 @@ function Header() {
                               <IoGiftOutline />
 
                               <p className="score mb-0">
-                                {user?.coinsEarned} coins
+                                {user?.coinsEarned.toFixed(2)} coins
                               </p>
                             </div>
                           </div>

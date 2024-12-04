@@ -7,9 +7,9 @@ import { UserContext } from "../../context/UserContext";
 
 function HelpBox({ item }) {
   const {user,setUser} = useContext(UserContext);
-  const authToken = localStorage.getItem("authToken");
+  const token = localStorage.getItem("authToken");
   const handleDonateAction = () => {
-    if (!authToken) {
+    if (!token) {
       toast.warning("You need to log in to donate.");
       return;
     }
@@ -26,7 +26,7 @@ function HelpBox({ item }) {
     appAxios
       .post(`/api/donationHistory/postDonationHistory`, orderDonation, {
         headers: {
-          Authorization: authToken,
+          Authorization: token,
         },
       })
       .then((response) => {

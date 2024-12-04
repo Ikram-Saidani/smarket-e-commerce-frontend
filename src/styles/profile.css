@@ -95,6 +95,7 @@
   align-items: center;
   justify-content: center;
   gap: 10px;
+  padding-left: 15px;
 }
 .profile .loyaltyProgram h3 {
   font-size: 24px;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { IoIosSearch } from "react-icons/io";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function SearchBox() {
   const [query, setQuery] = useState("");
@@ -13,7 +14,7 @@ function SearchBox() {
       navigate(`/search?title=${query.trim()}`);
       setQuery("");
     } else {
-      alert("Please enter a search term.");
+      toast.warning("Please enter a search term.");
     }
   };
 

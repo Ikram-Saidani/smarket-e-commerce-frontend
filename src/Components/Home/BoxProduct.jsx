@@ -27,21 +27,21 @@ function BoxProduct({ item }) {
     }
   };
   const handleAddToCart = () => {
-    if (!item.inStock) {
-      toast.warning(
-        "This product is not available at the moment. Please try again later!"
-      );
-    }
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let itemExist = cart.find((product) => product._id === item._id);
-    if (itemExist) {
-      toast.warning("This product is already in your cart.");
-    } else {
-      cart.push(item);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      toast.success("Product added to cart");
-    }
-  };
+    if (!item.inStock) {
+     toast.warning(
+       "This product is not available at the moment. Please try again later!"
+     );
+   } 
+   if (itemExist) {
+     toast.warning("This product is already in your cart.");
+   } else {
+     cart.push({ ...item, quantity: 1 });
+     localStorage.setItem("cart", JSON.stringify(cart));
+     toast.success("Product added to cart");
+   }
+ };
   return (
     <div className="productBox">
       <div className="boxTop">

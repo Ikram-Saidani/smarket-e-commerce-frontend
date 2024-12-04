@@ -8,7 +8,7 @@ import { baseURL } from "../../utils/config";
 const UserProfileDropDown = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-  const { logout, user } = useContext(UserContext);
+  const { setUser, user } = useContext(UserContext);
   const handleClick = (event) => {
     if (anchorEl === null) {
       setAnchorEl(event.currentTarget);
@@ -21,8 +21,10 @@ const UserProfileDropDown = () => {
     setAnchorEl(null);
   };
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = (e) => {
+    e.preventDefault();
+    setUser(null);
+    localStorage.removeItem("authToken");
     toast.success("Logged out successfully!");
     handleClose();
     navigate("/");
@@ -44,7 +46,7 @@ const UserProfileDropDown = () => {
         <MenuItem component={Link} to="/ordersHistory" onClick={handleClose}>
           History
         </MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+        <MenuItem onClick={(e)=>handleLogout(e)}>Logout</MenuItem>
       </Menu>
     </div>
   );

@@ -2,6 +2,7 @@ import { Button, Rating } from "@mui/material";
 import { useEffect, useState } from "react";
 import appAxios from "../../utils/axiosConfig";
 import { toast } from "react-toastify";
+
 function ProductDescription({ item }) {
   function renderExtraInformation(product) {
     switch (product.category) {
