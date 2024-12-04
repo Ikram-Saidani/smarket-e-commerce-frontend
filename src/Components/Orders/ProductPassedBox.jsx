@@ -1,16 +1,20 @@
-import React from 'react'
-import productImage from "../../assets/images/beauty.png";
+import React from "react";
 
-function ProductPassedBox() {
+function ProductPassedBox({ item }) {
   return (
-    <div className="productPassedBox" >
-    <img src={productImage} alt="..." />
-    <h3 className="mb-0">product title</h3>
-    <p className="mb-0">product price $</p>
-    <h3 className="mb-0">quantity</h3>
-    <p className="mb-0">total product price $</p>
-  </div>
-  )
+    <tr className="productPassedBox">
+      <td className="image">
+        <img
+          src={item.productId.image}
+          alt={item.productId.title}
+        />
+      </td>
+      <td className="title">{item.productId.title.length>40?item.productId.title.slice(0,40)+"...":item.productId.title}</td>
+      <td className="price">{item.productId.price} $</td>
+      <td className="qantity">{item.quantity}</td>
+      <td className="totalPrice">{item.totalPrice} $</td>
+    </tr>
+  );
 }
 
-export default ProductPassedBox
+export default ProductPassedBox;

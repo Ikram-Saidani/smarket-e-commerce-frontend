@@ -77,7 +77,7 @@ function LoyaltyProgram() {
   return (
     <div className="loyaltyProgram">
       <h3>Take your chance now!</h3>
-      <p>You currently have {user?.coinsEarned} coins.</p>
+      <p>You currently have {user?.coinsEarned.toFixed(2)} coins.</p>
 
       {canTryAgain() && tryGame ? (
         <>

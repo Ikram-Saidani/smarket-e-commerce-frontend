@@ -9,6 +9,14 @@
   flex-direction: column;
   gap: 30px;
 }
+h2.discountMessage{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 0 10px;
+}
 .cartHeader{
   display: flex;
   padding-left: 15px;
@@ -141,13 +149,12 @@
 .checkout{
   display: flex;
 }
-.checkout h4{
-  font-size: 18px;
-  letter-spacing: 2px;
+.checkout h2{
+  font-size: 1.2rem;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.8);
-  text-transform: capitalize;
-  margin-bottom: 10px;
+  color: var(--primary-color);
+  letter-spacing: 1px;
+  margin-bottom: 20px;
 }
 .addressBox , .addresses{
   display: flex;
@@ -182,6 +189,81 @@
 }
 .submitOrder a{
   text-decoration: none;
+}
+.paymentWithCard{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 15px;
+}
+.paymentWithCard h2{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  letter-spacing: 1px;
+}
+.paymentWithCard h3{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+.paymentWithCard h4{
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+  padding: 10px;
+  width: max-content;
+  place-self: center;
+  background-color: #9de7e725;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.paymentWithCard ul{
+  list-style: none;
+  padding: 0;
+}
+.paymentWithCard ul li{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
+}
+.paymentWithCard form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  padding-top: 15px;
+  margin: auto;
+}
+.paymentWithCard form>div{
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+.paymentWithCard form>div input{
+  width: 80%;
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  outline: none;
+  border-radius: 5px;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
+.paymentWithCard form>div label{
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: "Dosis, sans-serif";
+  color: rgba(0, 0, 0, 0.8);
+  letter-spacing: 1px;
 }
 
 /***********************************************************************************************************************/

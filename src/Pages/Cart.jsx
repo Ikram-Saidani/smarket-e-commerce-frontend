@@ -8,17 +8,61 @@ import { toast } from "react-toastify";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import SubTotal from "../Components/Cart/SubTotal";
+import appAxios from "../utils/axiosConfig";
 
 const Cart = () => {
+  const token = localStorage.getItem("authToken");
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
+  const [hasOrders, setHasOrders] = useState(false);
   const [openCheckout, setOpenCheckout] = useState(false);
+  const [discountMessage, setDiscountMessage] = useState("");
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(storedCart);
   }, []);
+
+  useEffect(() => {
+    appAxios
+      .get("/api/order/userorders", {
+        headers: { authorization: token },
+      }
+      )
+      .then((res) => {
+        setHasOrders(res.data.data.length > 0);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, [token]);
+
+  useEffect(() => {
+    const messages = [];
+
+    if (user?.discountEarnedWithGroup > 0) {
+      messages.push(`You have a discount of ${user.discountEarnedWithGroup}% earned with your group.`);
+    }
+
+    if (["coordinator", "ambassador", "admin"].includes(user?.role)) {
+      messages.push(`As a ${user.role}, you are entitled to a 20% discount.`);
+    }
+
+    if (user?.dateOfBirth) {
+      const userBirthday = new Date(user.dateOfBirth);
+      const today = new Date();
+      if (userBirthday.getMonth() === today.getMonth()) {
+        messages.push("Happy Birthday! Enjoy a 5% discount for this month.");
+      }
+    }
+
+    if (!hasOrders) {
+      messages.push("Welcome! You receive a 20% discount on your first order.");
+    }
+
+    setDiscountMessage(messages.join(" "));
+  }, [user, hasOrders]);
 
   const minus = (itemId) => {
     const newCart = cartItems.map((item) =>
@@ -54,6 +98,7 @@ const Cart = () => {
       <h2>Shopping Cart</h2>
       <p className="underTitle">Check your orders and proceed to checkout</p>
       <div className="cartList">
+        {discountMessage.length>0 && <h2 className="discountMessage">{discountMessage}</h2>}
         <div className="cartHeader">
           <div className="cart">
             {cartItems.length > 0 ? (
@@ -70,7 +115,7 @@ const Cart = () => {
               <p className="noItems">Your cart is empty!</p>
             )}
           </div>
-          <SubTotal cartItems={cartItems} />
+          <SubTotal hasOrders={hasOrders} cartItems={cartItems} />
         </div>
         {cartItems.length > 0 && (
           <Button onClick={handleCheckout}>

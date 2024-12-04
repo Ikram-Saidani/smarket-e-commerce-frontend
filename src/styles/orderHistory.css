@@ -3,7 +3,8 @@
   width: 100%;
   padding: 15px 0;
 }
-.orderList, .orderDetailsBox {
+.orderList,
+.orderDetailsBox {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +19,7 @@
   padding: 15px;
   background-color: #b5bdbd25;
 }
-.OrderHistoryBox  {
+.OrderHistoryBox {
   display: flex;
   width: 95%;
   height: 60px;
@@ -27,24 +28,30 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   color: rgba(0, 0, 0, 0.8);
 }
+.OrderHistoryBox .orderStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
 .OrderHistoryBox h4 {
   font-size: 16px;
-  letter-spacing: 2px;
   font-weight: 600;
 }
 .OrderHistoryBox p {
   font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
 }
 .OrderHistoryBox h3 {
-  font-size: 16px;
-  letter-spacing: 2px;
+  font-size: 18px;
   font-weight: 600;
+  font-family: "Dosis, sans-serif";
 }
 .OrderHistoryBox a {
   text-decoration: none;
 }
 .OrderHistoryBox button {
-  width: 120px;
+  width: 100px;
   height: 40px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   outline: none;
@@ -53,7 +60,6 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: 600;
-  letter-spacing: 2px;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -66,7 +72,7 @@
 .OrderHistoryBox button svg {
   font-size: 20px;
 }
-.orderDetailsBox .orderInfo{
+.orderDetailsBox .orderInfo {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -77,23 +83,28 @@
   border-radius: 10px;
   padding: 15px;
 }
-.orderDetailsBox .orderInfo h4{
+.orderDetailsBox .orderInfo h4 {
   font-size: 16px;
-  letter-spacing: 2px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.8);
 }
-.orderDetailsBox .orderInfo p{
+.orderDetailsBox .orderInfo p {
   font-size: 14px;
-  letter-spacing: 2px;
   font-weight: 600;
   color: rgba(0, 0, 0, 0.8);
 }
-.orderDetailsBox .orderInfo a{
+.orderDetailsBox .orderInfo a {
   text-decoration: none;
 }
-.orderDetailsBox .orderInfo button{
-  width: 120px;
+.removeOrBack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.orderDetailsBox .orderInfo button {
+  width: 80px;
   height: 40px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   outline: none;
@@ -102,7 +113,6 @@
   border-radius: 5px;
   cursor: pointer;
   font-weight: 600;
-  letter-spacing: 2px;
   display: flex;
   gap: 5px;
   align-items: center;
@@ -115,10 +125,58 @@
 .orderDetailsBox .orderInfo button svg {
   font-size: 20px;
 }
-.productsPassedList{
+.productsTable {
+  width: 100%;
+  margin: 20px 0;
+}
+.productsTable .tableHead tr {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.productsTable th {
+  padding: 8px;
+  text-align: center;
+  font-family: "Dosis, sans-serif";
+  font-weight: 600;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.productsTable td {
+  padding: 8px;
+  text-align: center;
+  font-family: "Dosis, sans-serif";
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.productsTable .image {
+  width: 80px;
+}
+.productsTable img {
+  width: 80px;
+  height: 80px;
+}
+.productsTable .title {
+  width: 200px;
+}
+.productsTable .price {
+  width: 80px;
+}
+.productsTable .quantity {
+  width: 80px;
+}
+.productsTable .totalPrice {
+  width: 100px;
+}
+.productsPassedList {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   flex-direction: column;
   margin: auto;
   gap: 10px;
@@ -136,36 +194,59 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding: 0 20px;
 }
-.productsPassedList .productPassedBox img{
-  width: 80px;
-}
-.productsPassedList .productPassedBox h3{
-  font-size: 16px;
-  letter-spacing: 2px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.8);
-}
-.productsPassedList .productPassedBox p{
-  font-size: 14px;
-  letter-spacing: 2px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.8);
-}
-.productsPassedList .productPassedBox a{
+.productsPassedList .productPassedBox a {
   text-decoration: none;
 }
-.tableHead {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 40px;
-  width: 100%;
-  height: 40px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-}
-.tableHead h3{
-  font-size: 16px;
-  letter-spacing: 2px;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.8);
+
+/***********************************************************************************************************************/
+
+@media (min-width: 340px) and (max-width: 750px) {
+  .OrderHistoryBox {
+    flex-direction: column;
+    gap: 10px;
+    height: max-content;
+    padding: 15px;
+  }
+  .OrderHistoryBox .orderStatus {
+    gap: 20px;
+  }
+  .orderDetailsBox .orderInfo {
+    flex-direction: column;
+  }
+  .productsTable .tableHead tr {
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .productsTable td {
+    font-size: 12px;
+  }
+  .productsTable img {
+    width: 40px;
+    height: 40px;
+  }
+  .productsTable .image {
+    width: max-content;
+  }
+  .productsTable .title {
+    width: 100px;
+    padding: 0;
+  }
+  .productsTable .price {
+    width: max-content;
+  }
+  .productsTable .quantity {
+    width: max-content;
+  }
+  .productsTable .totalPrice {
+    width: max-content;
+  }
+  .productsPassedList {
+    padding: 0;
+  }
+  .productsPassedList .productPassedBox {
+    padding: 0;
+  }
+  .productsTable .tableHead tr {
+    padding: 0;
+  }
 }

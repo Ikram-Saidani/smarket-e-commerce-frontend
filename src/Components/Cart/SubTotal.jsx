@@ -1,11 +1,8 @@
-import React, { useContext, useEffect, useState, useMemo } from "react";
-import appAxios from "../../utils/axiosConfig";
+import React, { useContext, useMemo } from "react";
 import { UserContext } from "../../context/UserContext";
 
-function SubTotal({ cartItems }) {
-    const token = localStorage.getItem("authToken");
+function SubTotal({ cartItems, hasOrders }) {
   const { user } = useContext(UserContext);
-  const [hasOrders, setHasOrders] = useState(false);
 
   const total = useMemo(
     () => cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0),
@@ -16,7 +13,7 @@ function SubTotal({ cartItems }) {
     let discountValue = 0;
 
     if (user?.discountEarnedWithGroup > 0) {
-      discountValue = user.discountEarnedWithGroup;
+      discountValue += user.discountEarnedWithGroup;
     }
 
     if (
@@ -24,39 +21,25 @@ function SubTotal({ cartItems }) {
       user?.role === "ambassador" ||
       user?.role === "admin"
     ) {
-      discountValue = 20;
+      discountValue += 20;
     }
 
     if (user?.dateOfBirth) {
       const userBirthday = new Date(user.dateOfBirth);
       const today = new Date();
       if (userBirthday.getMonth() === today.getMonth()) {
-        discountValue = Math.max(discountValue, 5);
+        discountValue += Math.max(discountValue, 5);
       }
     }
 
     if (!hasOrders) {
-      discountValue = Math.max(discountValue, 20);
+      discountValue += Math.max(discountValue, 20);
     }
 
     return discountValue;
   }, [user, hasOrders]);
 
   const shipping = total < 500 ? 5 : 0;
-
-  useEffect(() => {
-    appAxios
-      .get("/api/order/userorders", {
-        headers: { authorization: token },
-      }
-      )
-      .then((res) => {
-        setHasOrders(res.data.data.length > 0);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, [token]);
 
   const finalTotal = useMemo(
     () => total - (total * discount) / 100 + shipping,

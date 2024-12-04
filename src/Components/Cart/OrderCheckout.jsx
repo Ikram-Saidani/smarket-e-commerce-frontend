@@ -4,6 +4,7 @@ import { UserContext } from "../../context/UserContext";
 import appAxios from "../../utils/axiosConfig";
 import { toast } from "react-toastify";
 import Payment from "./Payment";
+import { useNavigate } from "react-router-dom";
 
 function OrderCheckout() {
   const token = localStorage.getItem("authToken");
@@ -17,6 +18,7 @@ function OrderCheckout() {
     paymentMode: "onDelivery",
   });
   const [openPayment, setOpenPayment] = useState(false);
+  const navigate = useNavigate();
 
   const handleInfosChange = (e) => {
     const { value } = e.target;
@@ -59,22 +61,30 @@ function OrderCheckout() {
       quantity: item.quantity,
       totalPrice: item.price * item.quantity,
     }));
-    try {
-      await appAxios.post(
-        "/api/order/postorder",
-        {
-          orderedProducts,
-          address: finalAddress,
-          paymentMode: orderInfos.paymentMode,
-        },
-        { headers: { authorization: token } }
-      );
-      setCart([]);
-      localStorage.removeItem("cart");
-      toast.success("Your order was placed successfully!");
-    } catch (error) {
-      console.error("Error placing order:", error);
+    if(!finalAddress) {
+      toast.warning("Please select an address!");
     }
+    const confirmPostOrder = window.confirm("Are you sure you want to place this order?");
+if (confirmPostOrder) {
+  try {
+    await appAxios.post(
+      "/api/order/postorder",
+      {
+        orderedProducts,
+        address: finalAddress,
+        paymentMode: orderInfos.paymentMode,
+      },
+      { headers: { authorization: token } }
+    );
+    setCart([]);
+    localStorage.removeItem("cart");
+    toast.success("Your order was placed successfully!");
+    navigate("/ordersHistory");
+  } catch (error) {
+    console.error("Error placing order:", error);
+  }
+}
+
   };
 
   const handleSubmitOrder = (e) => {
@@ -91,7 +101,7 @@ function OrderCheckout() {
       <form onSubmit={handleSubmitOrder}>
         <div className="checkout">
           <div className="address">
-            <h4>Select your address</h4>
+            <h2>Select your address</h2>
             <div className="addressBox">
               <div className="addresses">
                 {user?.address.map((item, index) => (
@@ -147,7 +157,7 @@ function OrderCheckout() {
           <Button type="submit">Submit</Button>
         </div>
       </form>
-      {openPayment && <Payment postOrder={postOrder} />}
+      {openPayment && <Payment cartItems={cart} postOrder={postOrder} />}
     </>
   );
 }
