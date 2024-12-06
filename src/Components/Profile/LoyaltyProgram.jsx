@@ -58,20 +58,39 @@ function LoyaltyProgram() {
         );
         toast.error("Failed to update your coins earned.");
       }
+      appAxios
+        .put(
+          "/api/user/lastspinTime",
+          {
+            lastSpinTime: new Date(),
+          },
+          {
+            headers: { Authorization: token },
+          }
+        )
+        .then((res) => {
+          setUser({ ...user, lastSpinTime: new Date() });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
 
     setTryGame(false);
-    localStorage.setItem("lastSpinTime", new Date().toISOString());
   };
 
   const canTryAgain = () => {
-    const lastSpinTime = localStorage.getItem("lastSpinTime");
-    if (!lastSpinTime) return true;
-
+    const lastSpinTime = user?.lastSpinTime;
+    if (!lastSpinTime) return true; // If no lastSpinTime, user can try again.
+  
     const lastSpinDate = new Date(lastSpinTime);
     const currentDate = new Date();
-    const timeDifference = currentDate - lastSpinDate;
-    return timeDifference > 86400000;
+  
+    // Calculate the time difference in milliseconds
+    const diffTime = currentDate - lastSpinDate;
+  
+    // Check if 24 hours (in milliseconds) have passed
+    return diffTime >= 24 * 60 * 60 * 1000;
   };
 
   return (

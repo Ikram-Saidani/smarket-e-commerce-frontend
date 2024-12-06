@@ -25,6 +25,8 @@ const UserProfileDropDown = () => {
     e.preventDefault();
     setUser(null);
     localStorage.removeItem("authToken");
+    localStorage.removeItem("cart");
+    localStorage.removeItem("wishList");
     toast.success("Logged out successfully!");
     handleClose();
     navigate("/");

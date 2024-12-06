@@ -36,7 +36,9 @@ function CategoryProducts() {
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
-        toast.error("Failed to fetch products. Please try again later.");
+        setProducts([]);
+        window.scrollTo(0, 0);
+        toast.warning("No product exist with this filter search.");
       });
   }, [category, ratingFilter, newPriceRange]);
 

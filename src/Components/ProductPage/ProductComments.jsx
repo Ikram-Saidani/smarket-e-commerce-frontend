@@ -38,11 +38,11 @@ function ProductComments({ comments, setComments }) {
       {comments && comments.length > 0 ? (
         comments.map((comment, index) => (
           <div className="comment" key={index}>
-            <img src={baseURL + comment.userId.avatar} alt="..." />
+            <img src={baseURL + comment?.userId?.avatar} alt="..." />
             <h4 className="mb-0">
-              {user && user?._id === comment.userId._id
+              {user && user?._id === comment.userId?._id
                 ? "You"
-                : comment.userId.name}{" "}
+                : comment.userId?.name}{" "}
               :
             </h4>
             <div>
@@ -53,7 +53,7 @@ function ProductComments({ comments, setComments }) {
             </div>
             <span
               className="deleteComment"
-              onClick={() => handleDeleteComment(comment._id)}
+              onClick={() => handleDeleteComment(comment?._id)}
             >
               <MdDelete />
             </span>

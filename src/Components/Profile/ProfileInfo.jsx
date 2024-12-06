@@ -45,6 +45,7 @@ function ProfileInfo() {
 
       await updateUserAddress(updatedAddressList);
       setNewAddress("");
+      setAddNewAddress(false);
     }
 
     setIsEditable(!isEditable);
@@ -65,7 +66,6 @@ function ProfileInfo() {
         }
       );
       setUser(response.data.data);
-      toast.success("Profile updated successfully!");
     } catch (error) {
       toast.error(
         error.response?.data?.message || "Failed to update profile"
