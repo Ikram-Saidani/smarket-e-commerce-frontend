@@ -6,9 +6,9 @@ import { toast } from "react-toastify";
 import Payment from "./Payment";
 import { useNavigate } from "react-router-dom";
 
-function OrderCheckout() {
+function OrderCheckout({abilityToOrderWithCoins , totalCoins, pointsEarned }) {
   const token = localStorage.getItem("authToken");
-  const { user } = useContext(UserContext);
+  const { user,setUser } = useContext(UserContext);
   const [cart, setCart] = useState(() => JSON.parse(localStorage.getItem("cart")) || []);
   const [newAddress, setNewAddress] = useState(false);
   const [paymentMode, setPaymentMode] = useState("onDelivery");
@@ -38,6 +38,33 @@ function OrderCheckout() {
   };
 
   const postOrder = async () => {
+
+    try {
+      await appAxios.put(
+        `/api/user/coinsearned/${user._id}`,
+        { coinsEarned: user.coinsEarned - totalCoins },
+        {
+          headers: { Authorization: token },
+        }
+      );
+      if (totalCoins > 0) {
+        toast.success(`You used ${totalCoins} coins!`);
+        const updatedUser = {
+          ...user,
+          coinsEarned: user?.coinsEarned - totalCoins,
+        };
+        setUser(updatedUser);
+      }
+    } catch (error) {
+      console.error(
+        "Failed to update user's coinsEarned:",
+        error.response || error
+      );
+      toast.error("Failed to use your coins earned.");
+    }
+
+
+
     const finalAddress =
       orderInfos.address === "new address"
         ? orderInfos.orderAddress
@@ -58,6 +85,7 @@ function OrderCheckout() {
 
     const orderedProducts = cart.map((item) => ({
       productId: item._id,
+      size: item.selectedSize,
       quantity: item.quantity,
       totalPrice: item.price * item.quantity,
     }));
@@ -89,7 +117,7 @@ if (confirmPostOrder) {
 
   const handleSubmitOrder = (e) => {
     e.preventDefault();
-    if (paymentMode === "onDelivery") {
+    if (paymentMode === "onDelivery"||paymentMode === "withCoins") {
       postOrder();
     } else {
       setOpenPayment(true);
@@ -149,6 +177,7 @@ if (confirmPostOrder) {
               >
                 <MenuItem value="onDelivery">On delivery</MenuItem>
                 <MenuItem value="withCard">With card</MenuItem>
+                {abilityToOrderWithCoins && <MenuItem value="withCoins">With coins</MenuItem>}
               </Select>
             </FormControl>
           </div>

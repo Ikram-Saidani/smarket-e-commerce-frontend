@@ -43,7 +43,6 @@ function Shop() {
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
-        toast.error("Failed to fetch products. Please try again later.");
       });
   }, [currentPage, ratingFilter, newPriceRange, priceRange]);
 

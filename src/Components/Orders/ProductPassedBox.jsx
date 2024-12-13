@@ -5,12 +5,12 @@ function ProductPassedBox({ item }) {
     <tr className="productPassedBox">
       <td className="image">
         <img
-          src={item.productId.image}
-          alt={item.productId.title}
+          src={item.productId?.image}
+          alt={item.productId?.title}
         />
       </td>
-      <td className="title">{item.productId.title.length>40?item.productId.title.slice(0,40)+"...":item.productId.title}</td>
-      <td className="price">{item.productId.price} $</td>
+      <td className="title">{item.productId?.title?.length>40?item.productId?.title.slice(0,40)+"...":item.productId?.title}</td>
+      <td className="price">{item.productId?.price} $</td>
       <td className="qantity">{item.quantity}</td>
       <td className="totalPrice">{item.totalPrice} $</td>
     </tr>

@@ -1,7 +1,7 @@
 import React, { useContext, useMemo } from "react";
 import { UserContext } from "../../context/UserContext";
 
-function SubTotal({ cartItems, hasOrders }) {
+function SubTotal({ cartItems, hasOrders,totalCoins }) {
   const { user } = useContext(UserContext);
 
   const total = useMemo(
@@ -63,6 +63,10 @@ function SubTotal({ cartItems, hasOrders }) {
               <span>
                 <strong>Shipping :</strong>{" "}
                 {shipping === 0 ? "Free" : `${shipping.toFixed(2)} $`}
+              </span>
+              <br />
+              <span>
+                <strong>Coins :</strong> {totalCoins.toFixed(2)} $
               </span>
               <br />
               <span>

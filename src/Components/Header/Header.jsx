@@ -12,7 +12,6 @@ import UserProfileDropDown from "./UserProfileDropDown";
 import { UserContext } from "../../context/UserContext";
 import Notifications from "./Notifications";
 import appAxios from "../../utils/axiosConfig";
-import { toast } from "react-toastify";
 
 function Header() {
   const token = localStorage.getItem("authToken");
@@ -99,7 +98,6 @@ function Header() {
       })
       .catch((error) => {
         console.error("Failed to fetch user:", error.response || error);
-        toast.error("Failed to load user information.");
       });
   }, [setUser, token]);
 

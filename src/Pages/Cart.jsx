@@ -16,20 +16,30 @@ const Cart = () => {
   const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [hasOrders, setHasOrders] = useState(false);
+  const [totalCoins, setTotalCoins] = useState(0);
   const [openCheckout, setOpenCheckout] = useState(false);
   const [discountMessage, setDiscountMessage] = useState("");
-
+  const [abilityToOrderWithCoins, setAbilityToOrderWithCoins] = useState(false);
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(storedCart);
-  }, []);
+    let totalCoins = 0;
+    storedCart.forEach((item) => {
+      totalCoins += item.coins;
+    });
+    setTotalCoins(totalCoins);
+    if (user?.coinsEarned < totalCoins) {
+      setAbilityToOrderWithCoins(false);
+    } else {
+      setAbilityToOrderWithCoins(true);
+    }
+  }, [setCartItems, user]);
 
   useEffect(() => {
     appAxios
       .get("/api/order/userorders", {
         headers: { authorization: token },
-      }
-      )
+      })
       .then((res) => {
         setHasOrders(res.data.data.length > 0);
       })
@@ -42,11 +52,13 @@ const Cart = () => {
     const messages = [];
 
     if (user?.discountEarnedWithGroup > 0) {
-      messages.push(`You have a discount of ${user.discountEarnedWithGroup}% earned with your group.`);
+      messages.push(
+        `You have a discount of ${user.discountEarnedWithGroup}% earned with your group.`
+      );
     }
 
     if (["coordinator", "ambassador", "admin"].includes(user?.role)) {
-      messages.push(`As a ${user.role}, you are entitled to a 20% discount.`);
+      messages.push(`As ${user.role}, you are entitled to a 20% discount.`);
     }
 
     if (user?.dateOfBirth) {
@@ -98,7 +110,9 @@ const Cart = () => {
       <h2>Shopping Cart</h2>
       <p className="underTitle">Check your orders and proceed to checkout</p>
       <div className="cartList">
-        {discountMessage.length>0 && <h2 className="discountMessage">{discountMessage}</h2>}
+        {discountMessage.length > 0 && (
+          <h2 className="discountMessage">{discountMessage}</h2>
+        )}
         <div className="cartHeader">
           <div className="cart">
             {cartItems.length > 0 ? (
@@ -115,7 +129,11 @@ const Cart = () => {
               <p className="noItems">Your cart is empty!</p>
             )}
           </div>
-          <SubTotal hasOrders={hasOrders} cartItems={cartItems} />
+          <SubTotal
+            totalCoins={totalCoins}
+            hasOrders={hasOrders}
+            cartItems={cartItems}
+          />
         </div>
         {cartItems.length > 0 && (
           <Button onClick={handleCheckout}>
@@ -127,7 +145,10 @@ const Cart = () => {
         )}
         {openCheckout && (
           <div className="orderCheckout">
-            <OrderChekout />
+            <OrderChekout
+              totalCoins={totalCoins}
+              abilityToOrderWithCoins={abilityToOrderWithCoins}
+            />
           </div>
         )}
       </div>

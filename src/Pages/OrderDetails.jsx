@@ -53,7 +53,7 @@ function OrderDetails() {
       <div className="orderDetailsBox">
         <div className="orderInfo">
           <h4 className="mb-0">{order._id}</h4>
-          <p className="mb-0">{order.paymentTotal} $</p>
+          <p className="mb-0">{order.paymentTotal?.toFixed(2)} $</p>
           <p className="mb-0">Discount {order.discountApplied} %</p>
           <p className="mb-0">
             {new Date(order.createdAt).toLocaleDateString()}

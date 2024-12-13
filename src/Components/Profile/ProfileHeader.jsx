@@ -27,7 +27,6 @@ function ProfileHeader() {
       })
       .catch((err) => {
         console.error("Error fetching group:", err.response || err);
-        toast.error("Failed to load group.");
       });
   }, [user?.groupId, token]);
 

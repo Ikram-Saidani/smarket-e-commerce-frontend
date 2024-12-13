@@ -28,7 +28,6 @@ function SearchResults() {
           setSearchedProducts([]);
         }
       } catch (error) {
-        toast.error("Failed to fetch products. Please try again later.");
         setSearchedProducts([]);
       } finally {
         setLoading(false);

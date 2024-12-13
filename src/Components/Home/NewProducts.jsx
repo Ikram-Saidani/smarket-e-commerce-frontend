@@ -18,7 +18,6 @@ function NewProducts() {
       })
       .catch((err) => {
         console.error("Error fetching new products:", err);
-        toast.error("Failed to fetch products. Please try again later.");
       });
   }, []);
   return (

@@ -19,7 +19,6 @@ function HelpAndHope() {
       })
       .catch((err) => {
         console.error("Error fetching products:", err);
-        toast.error("Failed to fetch products. Please try again later.");
       });
   }, []);
 

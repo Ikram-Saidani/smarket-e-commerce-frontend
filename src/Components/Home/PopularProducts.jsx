@@ -18,7 +18,6 @@ function PopularProducts() {
       })
       .catch((err) => {
         console.error("Error fetching popular products:", err);
-        toast.error("Failed to fetch products. Please try again later.");
       });
   }, []);
   return (

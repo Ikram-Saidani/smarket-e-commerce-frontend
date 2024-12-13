@@ -38,7 +38,6 @@ function CategoryProducts() {
         console.error("Error fetching products:", err);
         setProducts([]);
         window.scrollTo(0, 0);
-        toast.warning("No product exist with this filter search.");
       });
   }, [category, ratingFilter, newPriceRange]);
 

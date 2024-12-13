@@ -200,6 +200,7 @@
     letter-spacing: 2px;
     font-weight: 600;
     color: rgba(0, 0, 0, 0.8);
+    text-transform: capitalize;
 }
 .comment p{
     font-size: 14px;

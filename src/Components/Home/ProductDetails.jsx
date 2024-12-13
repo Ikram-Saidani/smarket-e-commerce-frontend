@@ -36,7 +36,6 @@ function ProductDetails({ item }) {
       })
       .catch((err) => {
         console.error("Error fetching comments for this product", err);
-        toast.error("Failed to fetch comments. Please try again later.");
       });
   }, [itemId]);
 

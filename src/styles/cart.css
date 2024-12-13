@@ -265,7 +265,9 @@ h2.discountMessage{
   color: rgba(0, 0, 0, 0.8);
   letter-spacing: 1px;
 }
-
+.size{
+  width: 100px;
+}
 /***********************************************************************************************************************/
   
 @media (min-width: 340px) and (max-width: 750px) {
@@ -274,6 +276,7 @@ h2.discountMessage{
     height: max-content;
     justify-content: center;
     align-items: center;
+    gap: 15px;
   }
   .cartBox .boxRight h3 {
     width: 43%;

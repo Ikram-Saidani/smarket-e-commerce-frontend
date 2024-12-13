@@ -18,7 +18,6 @@ function FeaturedProducts() {
       })
       .catch((err) => {
         console.error("Error fetching featured products:", err);
-        toast.error("Failed to fetch products. Please try again later.");
       });
   }, []);
   return (

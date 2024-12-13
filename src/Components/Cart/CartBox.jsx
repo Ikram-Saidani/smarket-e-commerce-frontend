@@ -2,6 +2,7 @@ import React from "react";
 import { TiTrash } from "react-icons/ti";
 import QuantityBox from "./QuantityBox";
 import { toast } from "react-toastify";
+import Size from "./Size";
 
 function CartBox({ cartItem, updateCart, minus, plus }) {
   const handleRemoveItem = () => {
@@ -32,11 +33,19 @@ function CartBox({ cartItem, updateCart, minus, plus }) {
         minus={minus}
          />
         </div>
+       
+        
         <span className="delete" onClick={handleRemoveItem}>
           <TiTrash />
         </span>
       </div>
+      {(cartItem.category==="fashion"||cartItem.category==="footwear")&&(
+          <Size
+          cartItem={cartItem}
+          />
+        )}
     </div>
+
   );
 }
 
