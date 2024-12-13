@@ -1,51 +1,61 @@
 import React, { useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
-function Size({ cartItem }) {
-  const [valueForm, setValueForm] = useState("Size");
+function Size({ cartItem, setCartItems }) {
+  const [valueForm, setValueForm] = useState("");
+  let sizeOptions =[]
+  if(cartItem.category === "fashion"){
+    cartItem.size.forEach((size) => {
+      sizeOptions.push(size.size);
+    }
+    )
+  } else if(cartItem.category === "footwear"){
+    cartItem.shoeSize.forEach((size) => {
+      sizeOptions.push(size.shoeSize);
+    }
+    )
+  }
+ 
   const handleAddSize = (e) => {
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    let newCart = cart.map((item) => {
+    const selectedSize = e.target.value;
+
+    // Update the cart in localStorage
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    const newCart = cart.map((item) => {
       if (item._id === cartItem._id) {
-        return { ...item, selectedSize: e.target.value };
+        return { ...item, selectedSize };
       }
       return item;
     });
+
+    // Update state and localStorage
+    setCartItems(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
-    let target = e.target.value;
-    cartItem.category === "fashion"
-      ? setValueForm(target.size)
-      : setValueForm(target.shoeSize);
+
+    // Update local state for the selected size
+    setValueForm(selectedSize);
   };
+
   return (
     <FormControl className="size">
-      <InputLabel id="demo-simple-select-helper-label">Size</InputLabel>
+      <InputLabel id="size-select-label">Size</InputLabel>
       <Select
-        labelId="demo-simple-select-helper-label"
-        id="demo-simple-select-helper size"
+        labelId="size-select-label"
+        id="size-select"
         name="size"
         value={valueForm}
         label="Size"
-        onChange={(e) => handleAddSize(e)}
+        onChange={handleAddSize}
       >
-        {cartItem.category === "fashion"
-          ? cartItem.size?.map((item, i) => {
-              return (
-                <MenuItem key={i} className="sizeItem" value={item}>
-                  {item.size}
-                </MenuItem>
-              );
-            })
-          : cartItem.shoeSize?.map((item, i) => {
-              return (
-                <MenuItem key={i} className="menuCategory" value={item}>
-                  {item.shoeSize}
-                </MenuItem>
-              );
-            })}
+        {sizeOptions?.map((option, i) => (
+          <MenuItem key={i} value={option}>
+            {option}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
 }
 
 export default Size;
+

@@ -51,7 +51,7 @@ function SubTotal({ cartItems, hasOrders,totalCoins }) {
       {cartItems.length > 0 && (
         <div className="total">
           <span>
-            <strong>Order :</strong> {total.toFixed(2)} $
+            <strong>Order :</strong> {total.toFixed(2)} TND
           </span>
           <br />
           {user && (
@@ -62,15 +62,15 @@ function SubTotal({ cartItems, hasOrders,totalCoins }) {
               <br />
               <span>
                 <strong>Shipping :</strong>{" "}
-                {shipping === 0 ? "Free" : `${shipping.toFixed(2)} $`}
+                {shipping === 0 ? "Free" : `${shipping.toFixed(2)} TND`}
               </span>
               <br />
               <span>
-                <strong>Coins :</strong> {totalCoins.toFixed(2)} $
+                <strong>Coins :</strong> {totalCoins.toFixed(2)}
               </span>
               <br />
               <span>
-                <strong>Total :</strong> {finalTotal.toFixed(2)} $
+                <strong>Total :</strong> {finalTotal.toFixed(2)} TND
               </span>
             </>
           )}

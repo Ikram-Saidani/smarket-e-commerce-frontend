@@ -33,7 +33,7 @@ function Payment({ cartItems, postOrder }) {
       <ul>
         {cartItems.map((item,index) => (
           <li key={item._id}>
-          {index+1} : {item.title} - {item.quantity} x ${item.price.toFixed(2)} = $
+          {index+1} : {item.title} - {item.quantity} x TND{item.price.toFixed(2)} = TND
             {(item.quantity * item.price).toFixed(2)}
           </li>
         ))}

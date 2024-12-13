@@ -4,7 +4,7 @@ import QuantityBox from "./QuantityBox";
 import { toast } from "react-toastify";
 import Size from "./Size";
 
-function CartBox({ cartItem, updateCart, minus, plus }) {
+function CartBox({ cartItem, updateCart, minus, plus, setCartItems }) {
   const handleRemoveItem = () => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let newCart = cart?.filter((product) => product._id !== cartItem._id);
@@ -25,7 +25,7 @@ function CartBox({ cartItem, updateCart, minus, plus }) {
             : cartItem.title}
         </h3>
         <p className="mb-0">
-          {(Math.round(cartItem.price * 10) / 10).toFixed(1)} $
+          {(Math.round(cartItem.price * 10) / 10).toFixed(1)} TND
         </p>
         <div className="quantityBox">
           <QuantityBox cartItem={cartItem} 
@@ -42,6 +42,8 @@ function CartBox({ cartItem, updateCart, minus, plus }) {
       {(cartItem.category==="fashion"||cartItem.category==="footwear")&&(
           <Size
           cartItem={cartItem}
+          setCartItems={setCartItems}
+
           />
         )}
     </div>

@@ -61,15 +61,16 @@ function ProductDescription({ item }) {
       toast.warning(
         "This product is not available at the moment. Please try again later!"
       );
-    }
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
-    let itemExist = cart.find((product) => product._id === item._id);
-    if (itemExist) {
-      toast.warning("This product is already in your cart.");
     } else {
-      cart.push(item);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      toast.success("Product added to cart");
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      let itemExist = cart.find((product) => product._id === item._id);
+      if (itemExist) {
+        toast.warning("This product is already in your cart.");
+      } else {
+        cart.push({ ...item, quantity: 1, selectedSize: "" });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Product added to cart");
+      }
     }
   };
   const [product, setProduct] = useState({});
@@ -115,10 +116,10 @@ function ProductDescription({ item }) {
         <span className="coins">{product.coins} coins</span>
         <div className="row">
           {product.discount > 0 && (
-            <h4 className="oldPrice">{product.oldPrice}$</h4>
+            <h4 className="oldPrice">{product.oldPrice}TND</h4>
           )}
           <h4 className="currentPrice">
-            {(Math.round(product.price * 10) / 10).toFixed(1)}$
+            {(Math.round(product.price * 10) / 10).toFixed(1)}TND
           </h4>
         </div>
         <h5 className={product.inStock ? "inStock" : "notAvailable"}>

@@ -20,14 +20,16 @@ function FavoriteBox({ item, updateFavorites }) {
      toast.warning(
        "This product is not available at the moment. Please try again later!"
      );
-   } 
-   if (itemExist) {
-     toast.warning("This product is already in your cart.");
-   } else {
-     cart.push({ ...item, quantity: 1 });
-     localStorage.setItem("cart", JSON.stringify(cart));
-     toast.success("Product added to cart");
-   }
+   } else{
+
+     if (itemExist) {
+       toast.warning("This product is already in your cart.");
+      } else {
+        cart.push({ ...item, quantity: 1,selectedSize:"" });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Product added to cart");
+      }
+    }
  };
   return (
     <div className="favoriteBox">
@@ -45,7 +47,7 @@ function FavoriteBox({ item, updateFavorites }) {
         </h4>
 
         <p className="mb-0">
-          {(Math.round(item.price * 10) / 10).toFixed(1)} $
+          {(Math.round(item.price * 10) / 10).toFixed(1)} TND
         </p>
 
         <span className="addToCart" onClick={handleAddToCart}>

@@ -38,33 +38,7 @@ function OrderCheckout({abilityToOrderWithCoins , totalCoins, pointsEarned }) {
   };
 
   const postOrder = async () => {
-
-    try {
-      await appAxios.put(
-        `/api/user/coinsearned/${user._id}`,
-        { coinsEarned: user.coinsEarned - totalCoins },
-        {
-          headers: { Authorization: token },
-        }
-      );
-      if (totalCoins > 0) {
-        toast.success(`You used ${totalCoins} coins!`);
-        const updatedUser = {
-          ...user,
-          coinsEarned: user?.coinsEarned - totalCoins,
-        };
-        setUser(updatedUser);
-      }
-    } catch (error) {
-      console.error(
-        "Failed to update user's coinsEarned:",
-        error.response || error
-      );
-      toast.error("Failed to use your coins earned.");
-    }
-
-
-
+   
     const finalAddress =
       orderInfos.address === "new address"
         ? orderInfos.orderAddress
@@ -85,7 +59,7 @@ function OrderCheckout({abilityToOrderWithCoins , totalCoins, pointsEarned }) {
 
     const orderedProducts = cart.map((item) => ({
       productId: item._id,
-      size: item.selectedSize,
+      selectedSize: item.selectedSize,
       quantity: item.quantity,
       totalPrice: item.price * item.quantity,
     }));
@@ -115,11 +89,36 @@ if (confirmPostOrder) {
 
   };
 
-  const handleSubmitOrder = (e) => {
+  const handleSubmitOrder = async(e) => {
     e.preventDefault();
-    if (paymentMode === "onDelivery"||paymentMode === "withCoins") {
+    if (paymentMode === "onDelivery") {
       postOrder();
-    } else {
+    } else if(paymentMode === "withCoins"){
+      try {
+        await appAxios.put(
+          `/api/user/coinsearned/${user._id}`,
+          { coinsEarned: (user.coinsEarned - totalCoins) },
+          {
+            headers: { Authorization: token },
+          }
+        );
+        if (totalCoins > 0) {
+          toast.success(`You used ${totalCoins} coins!`);
+          const updatedUser = {
+            ...user,
+            coinsEarned: user?.coinsEarned - totalCoins,
+          };
+          setUser(updatedUser);
+        }
+      } catch (error) {
+        console.error(
+          "Failed to update user's coinsEarned:",
+          error.response || error
+        );
+        toast.error("Failed to use your coins earned.");
+      }
+      postOrder();
+    }else {
       setOpenPayment(true);
     }
   };
@@ -186,7 +185,7 @@ if (confirmPostOrder) {
           <Button type="submit">Submit</Button>
         </div>
       </form>
-      {openPayment && <Payment cartItems={cart} postOrder={postOrder} />}
+      {(openPayment&&paymentMode==="withCard") && <Payment cartItems={cart} postOrder={postOrder} />}
     </>
   );
 }

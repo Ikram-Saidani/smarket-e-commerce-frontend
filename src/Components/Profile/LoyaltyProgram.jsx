@@ -4,6 +4,7 @@ import { Button, Stack, Alert } from "@mui/material";
 import { toast } from "react-toastify";
 import appAxios from "../../utils/axiosConfig";
 import { UserContext } from "../../context/UserContext";
+import { useEffect } from "react";
 
 function LoyaltyProgram() {
   const token = localStorage.getItem("authToken");
@@ -16,6 +17,19 @@ function LoyaltyProgram() {
     0, 10, 20, 10, 0, 30, 40, 0, 50, 60, 0, 10, 20, 0, 30, 40, 0, 50, 60, 70,
     20, 80, 30, 0, 90, 20, 0, 100,
   ];
+  useEffect(() => {
+    if (!token) return;
+    appAxios
+      .get("/api/user/me", {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setUser(res.data.data);
+      })
+      .catch((error) => {
+        console.error("Failed to fetch user:", error.response || error);
+      });
+  }, [setUser, token]);
   const data = earnedChoices.map((value, index) => ({
     option: `${value} Coins`,
     style: { backgroundColor: index % 2 === 0 ? "#ffa726" : "#ff7043" },
@@ -43,12 +57,13 @@ function LoyaltyProgram() {
       try {
         await appAxios.put(
           `/api/user/coinsearned/${user._id}`,
-          { coinsEarned: pointsEarned },
+          { coinsEarned: user?.coinsEarned + pointsEarned },
           {
             headers: { Authorization: token },
           }
         );
         if (pointsEarned > 0) {
+          setUser({ ...user, coinsEarned: user?.coinsEarned + pointsEarned });
           toast.success(`You earned ${pointsEarned} coins!`);
         }
       } catch (error) {

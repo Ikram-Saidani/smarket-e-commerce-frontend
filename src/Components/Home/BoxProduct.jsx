@@ -30,18 +30,19 @@ function BoxProduct({ item }) {
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     let itemExist = cart.find((product) => product._id === item._id);
     if (!item.inStock) {
-     toast.warning(
-       "This product is not available at the moment. Please try again later!"
-     );
-   } 
-   if (itemExist) {
-     toast.warning("This product is already in your cart.");
-   } else {
-     cart.push({ ...item, quantity: 1 });
-     localStorage.setItem("cart", JSON.stringify(cart));
-     toast.success("Product added to cart");
-   }
- };
+      toast.warning(
+        "This product is not available at the moment. Please try again later!"
+      );
+    } else {
+      if (itemExist) {
+        toast.warning("This product is already in your cart.");
+      } else {
+        cart.push({ ...item, quantity: 1, selectedSize: "" });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        toast.success("Product added to cart");
+      }
+    }
+  };
   return (
     <div className="productBox">
       <div className="boxTop">
@@ -72,8 +73,8 @@ function BoxProduct({ item }) {
           <Rating name="read-only" value={item.rate.rating} readOnly />
         </div>
         <div className="row">
-          {item.discount > 0 && <p className="oldPrice">{item.oldPrice}$</p>}
-          <p className="currentPrice">{item.price.toFixed(1)}$</p>
+          {item.discount > 0 && <p className="oldPrice">{item.oldPrice}TND</p>}
+          <p className="currentPrice">{item.price.toFixed(1)}TND</p>
         </div>
         <p className="coins">{item.coins} coins</p>
         <span className="addToCart" onClick={handleAddToCart}>

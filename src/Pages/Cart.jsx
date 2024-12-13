@@ -80,6 +80,11 @@ const Cart = () => {
     const newCart = cartItems.map((item) =>
       item._id === itemId ? { ...item, quantity: item.quantity - 1 } : item
     );
+    const totalCoins = newCart.reduce((acc, item) => {
+      return acc + item.coins * item.quantity;
+    }
+    , 0);
+    setTotalCoins(totalCoins);
     setCartItems(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };
@@ -88,6 +93,11 @@ const Cart = () => {
     const newCart = cartItems.map((item) =>
       item._id === itemId ? { ...item, quantity: item.quantity + 1 } : item
     );
+    const totalCoins = newCart.reduce((acc, item) => {
+      return acc + item.coins * item.quantity;
+    }, 0);
+    setTotalCoins(totalCoins);
+
     setCartItems(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };
@@ -119,6 +129,7 @@ const Cart = () => {
               cartItems.map((cartItem) => (
                 <CartBox
                   cartItem={cartItem}
+                  setCartItems={setCartItems}
                   updateCart={updateCart}
                   minus={minus}
                   plus={plus}
