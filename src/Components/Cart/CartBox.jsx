@@ -4,7 +4,7 @@ import QuantityBox from "./QuantityBox";
 import { toast } from "react-toastify";
 import Size from "./Size";
 
-function CartBox({ cartItem, updateCart, minus, plus, setCartItems }) {
+function CartBox({ cartItem, updateCart, minus, plus, setCartItems,setTotalCoins }) {
   const handleRemoveItem = () => {
     let cart = JSON.parse(localStorage.getItem("cart"));
     let newCart = cart?.filter((product) => product._id !== cartItem._id);
@@ -12,6 +12,10 @@ function CartBox({ cartItem, updateCart, minus, plus, setCartItems }) {
       updateCart(newCart);
       toast.info("Product removed from cart");
     }
+    const totalCoins = newCart.reduce((acc, item) => {
+      return acc + item.coins * item.quantity;
+    }, 0);
+    setTotalCoins(totalCoins);
   };
   return (
     <div className="cartBox">

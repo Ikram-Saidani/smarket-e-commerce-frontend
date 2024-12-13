@@ -133,6 +133,7 @@ const Cart = () => {
                   updateCart={updateCart}
                   minus={minus}
                   plus={plus}
+                  setTotalCoins={setTotalCoins}
                   key={cartItem._id}
                 />
               ))
